@@ -6,16 +6,15 @@ using Xunit;
 
 namespace mana_XUnit
 {
-    public class UnitTest1
+    public class Scenario
     {
-        [Fact(DisplayName = "เข้าหน้า Ticket ได้")]
+        [Fact(DisplayName = "Go to address page")]
         public async Task Test1()
         {
             var sut = new SetUpProject();
-            sut.ManaMcontent();
 
             var res = await sut.ManaMcontent();
-            res.Should().Be("");
+            res.Should().Be(true);
         }
     }
 }
