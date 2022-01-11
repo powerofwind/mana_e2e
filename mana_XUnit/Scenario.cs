@@ -46,40 +46,74 @@ namespace mana_XUnit
         //    res.Should().Be("Success");
         //}
 
-        [Fact(DisplayName = "สร้างการผูกบัญชีพร้อมเพย์แบบหมายเลขโทรศัพท์ได้")]
-        public async Task AddPPayAccount()
+        [Fact(DisplayName = "สร้างการผูกบัญชีพร้อมเพย์แบบหมายเลขบัตรประชาชนได้")]
+        public async Task AddPPayAccountByPID()
         {
             var sut = new SetUpProject();
-            var res = await sut.AddPPayAccount();
+            var res = await sut.AddPPayAccountByPID();
+            res.Should().Be(true);
+        }
+
+        [Fact(DisplayName = "สร้างการผูกบัญชีพร้อมเพย์แบบหมายเลขโทรศัพท์ได้")]
+        public async Task AddPPayAccountByPhoneNumber()
+        {
+            var sut = new SetUpProject();
+            var res = await sut.AddPPayAccountByPhoneNumber();
             res.Should().Be(true);
         }
 
 
-        // สร้างร้านสำหรับ Business ได้
-        // User ปฏิเสธการเข้าถึงข้อมูลได้
+        [Fact(DisplayName = "สร้างร้านสำหรับ Business ได้")]
+        public async Task CreateBusinessShop()
+        {
+            var sut = new SetUpProject();
+            var res = await sut.CreateBusinessShop();
+            res.Should().Be("Success");
+        }
+
+        [Fact(DisplayName = "สร้างการผูกบัญชีธนาคารได้")]
+        public async Task AddBankingAccount()
+        {
+            var sut = new SetUpProject();
+            var res = await sut.AddBankingAccount();
+            res.Should().Be(true);
+        }
+
+
+
         // สร้างการผูกบัญชีธนาคารได้
-        // Manager อนุมัติการเข้าถึงข้อมูลได้
         // ส่ง RTP เพื่อขอเติมเงินไปยังบัญชีธนาคารที่ผูกไว้ได้
         // ส่งคำขอ KYC basic ได้
-        // Manager ปฏิเสธการยกเลิกการระงับบัญชีได้
         // แจ้งปัญหาไปยังทีม Support ได้
         // ส่ง RTP เพื่อขอเติมเงินไปยังพร้อมเพย์ที่ผูกไว้ได้
         // ถอนเงินออกจากกระเป๋าเงิน mana ผ่านบัญชีธนาคารที่ผูกไว้ไม่ได้ เพราะเงินไม่พอ
         // ถอนเงินจากพร้อมเพย์ที่ผูกไว้ได้
-        // สร้างการผูกบัญชีพร้อมเพย์แบบหมายเลขบัตรประชาชนได้
         // สร้าง QR เพื่อเติมเงินเข้ากระเป๋าเงิน Mana ได้
         // ถอนเงินออกขากร้าน Business เข้ากระเป๋าเงิน Mana ได้
-        // สร้างการผูกบัญชีพร้อมเพย์แบบหมายเลขโทรศัพท์ได้
         // ไม่สามารถถอนเงินออกจากกระเป๋าเงิน Mana ผ่านบัญชีพร้อมเพย์ที่ไม่เคยเติมเงินไม่ได้
         // สร้าง QR ร้าน Business ได้
         // ไม่สามารถถอนเงินออกจากกระเป๋าเงิน Mana ผ่านบัญชีธนาคารไม่เคยเติมเงินไม่ได้
-        // ถอนเงินจากบัญีธนาคารที่ผูกไว้ได้
-        // Manager ปฏิเสธการเข้าถึงข้อมูลได้
+        // ถอนเงินจากบัญีธนาคารที่ผูกไว้ได้     
         // ถองเงินออกจากกระเป๋าเงิน Mana ผ่านบัญชีพร้อมเพย์ที่ผูกไว้ไม่ได้ เพราะเงินในบัญชีไม่พอ
-        // Manager อนุมัติการระงับบัญชีได้
-        // Manager ปฏิเสธการระงับบัญชีได้
-        // User อนุมัติการเข้าถึงข้อมูลได้
-        // Manager อนุมัติการยกเลิกการระงับบัญชีได้
 
     }
 }
+
+//done case
+// สร้างการผูกบัญชีพร้อมเพย์แบบหมายเลขโทรศัพท์ได้
+// สร้างการผูกบัญชีพร้อมเพย์แบบหมายเลขบัตรประชาชนได้
+// สร้างร้านสำหรับ Business ได้
+
+// consent case
+// User ปฏิเสธการเข้าถึงข้อมูลได้
+// Manager อนุมัติการเข้าถึงข้อมูลได้
+// Manager ปฏิเสธการยกเลิกการระงับบัญชีได้
+// Manager ปฏิเสธการเข้าถึงข้อมูลได้
+// Manager อนุมัติการระงับบัญชีได้
+// Manager ปฏิเสธการระงับบัญชีได้
+// User อนุมัติการเข้าถึงข้อมูลได้
+// Manager อนุมัติการยกเลิกการระงับบัญชีได้
+
+
+
+
