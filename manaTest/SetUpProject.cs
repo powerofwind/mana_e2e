@@ -44,168 +44,153 @@ namespace manaTest
             return true;
         }
 
-        public async Task<string> CheckDialogMessageInAlertBrowser()
-        {
-            var browser = await BeforeScenario();
-            page = await browser.NewPageAsync();
-            await page.GotoAsync("https://letcode.in/alert");
-            var dialogMessage = string.Empty;
-            page.Dialog += async (_, dialog) =>
-            {
-                dialogMessage = dialog.Message;
-                await dialog.DismissAsync(); //close dialog
-                //await dialog.AcceptAsync(); //confirm dialog
-            };
-            await page.ClickAsync("text=Simple Alert"); //dialog ok
-            //await page.ClickAsync("text=Confirm Alert"); //dialog Yes No
-            return dialogMessage;
-        }
+        //public async Task<string> CheckDialogMessageInAlertBrowser()
+        //{
+        //    var browser = await BeforeScenario();
+        //    page = await browser.NewPageAsync();
+        //    await page.GotoAsync("https://letcode.in/alert");
+        //    var dialogMessage = string.Empty;
+        //    page.Dialog += async (_, dialog) =>
+        //    {
+        //        dialogMessage = dialog.Message;
+        //        await dialog.DismissAsync(); //close dialog
+        //        //await dialog.AcceptAsync(); //confirm dialog
+        //    };
+        //    await page.ClickAsync("text=Simple Alert"); //dialog ok
+        //    //await page.ClickAsync("text=Confirm Alert"); //dialog Yes No
+        //    return dialogMessage;
+        //}
 
-        public async Task<string> InputTextInAlertBrowser()
-        {
-            var browser = await BeforeScenario();
-            page = await browser.NewPageAsync();
-            await page.GotoAsync("https://letcode.in/alert");
-            //await page.GotoAsync("http://localhost:8101/#/wallet-topup-ppay"); //เทสกับมานะ
-            var dialogMessage = string.Empty;
-            page.Dialog += async (_, dialog) =>
-            {
-                dialogMessage = dialog.Message;
-                await dialog.AcceptAsync("123"); //ใส่ input ใน dialog แล้วกดตกลง
-            };
-            await page.ClickAsync("text=Prompt Alert");
-            //await page.ClickAsync("input[name=\"ion-input-1\"]"); //เทสกับมานะ
-            var text = await page.InnerTextAsync("text=Prompt AlertYour name is: 123 >> div");
-            return text;
-        }
+        //public async Task<string> InputTextInAlertBrowser()
+        //{
+        //    var browser = await BeforeScenario();
+        //    page = await browser.NewPageAsync();
+        //    await page.GotoAsync("https://letcode.in/alert");
+        //    //await page.GotoAsync("http://localhost:8101/#/wallet-topup-ppay"); //เทสกับมานะ
+        //    var dialogMessage = string.Empty;
+        //    page.Dialog += async (_, dialog) =>
+        //    {
+        //        dialogMessage = dialog.Message;
+        //        await dialog.AcceptAsync("123"); //ใส่ input ใน dialog แล้วกดตกลง
+        //    };
+        //    await page.ClickAsync("text=Prompt Alert");
+        //    //await page.ClickAsync("input[name=\"ion-input-1\"]"); //เทสกับมานะ
+        //    var text = await page.InnerTextAsync("text=Prompt AlertYour name is: 123 >> div");
+        //    return text;
+        //}
 
-        public async Task<string> TopUpPPay()
+        //public async Task<string> TopUpPPay()
+        //{
+        //    var isInitSuccess = await ManaMcontent("https://localhost:44364/dev/visit?url=https://s.manal.ink/np/nfinanc-home");
+        //    if (!isInitSuccess)
+        //    {
+        //        return "Can not InitPage";
+        //    }
+        //    await page.WaitForTimeoutAsync(2000);
+        //    await page.GotoAsync("http://localhost:8100/#/financial-menu");
+        //    var dialogMessage = string.Empty;
+        //    page.Dialog += page_Dialog1_EventHandler;
+        //    await page.ClickAsync("ion-col:has-text(\"เติมเงิน\")");
+        //    await page.WaitForTimeoutAsync(2000);
+
+        //    await page.GotoAsync("http://localhost:8100/#/wallet-topup");
+        //    await page.WaitForTimeoutAsync(2000);
+        //    page.Dialog += page_Dialog2_EventHandler;
+        //    await page.ClickAsync("text=devmasterpp");
+        //    await page.WaitForTimeoutAsync(2000);
+
+        //    await page.GotoAsync("http://localhost:8100/#/wallet-topup-ppay");
+        //    await page.WaitForTimeoutAsync(2000);
+        //    page.Dialog += page_Dialog3_EventHandler;
+        //    await page.ClickAsync("input[name=\"ion-input-1\"]");
+        //    await page.WaitForTimeoutAsync(2000);
+        //    await page.ClickAsync("button");
+        //    await page.WaitForTimeoutAsync(2000);
+
+        //    await page.GotoAsync("http://localhost:8100/#/wallet-topup-ppay-confirm");
+        //    await page.WaitForTimeoutAsync(2000);
+        //    page.Dialog += page_Dialog4_EventHandler;
+        //    page.Dialog += page_Dialog5_EventHandler;
+        //    await page.ClickAsync("button");
+        //    await page.WaitForTimeoutAsync(5000);
+
+        //    void page_Dialog1_EventHandler(object sender, IDialog dialog)
+        //    {
+        //        dialog.DismissAsync();
+        //        page.Dialog -= page_Dialog1_EventHandler;
+        //    }
+        //    void page_Dialog2_EventHandler(object sender, IDialog dialog)
+        //    {
+        //        dialog.DismissAsync();
+        //        page.Dialog -= page_Dialog2_EventHandler;
+        //    }
+        //    void page_Dialog3_EventHandler(object sender, IDialog dialog)
+        //    {
+        //        dialog.AcceptAsync("25.00");
+        //        page.Dialog -= page_Dialog3_EventHandler;
+        //    }
+        //    void page_Dialog4_EventHandler(object sender, IDialog dialog)
+        //    {
+        //        dialog.DismissAsync();
+        //        page.Dialog -= page_Dialog4_EventHandler;
+        //    }
+        //    void page_Dialog5_EventHandler(object sender, IDialog dialog)
+        //    {
+        //        dialogMessage = dialog.Message;
+        //        dialog.DismissAsync();
+        //        page.Dialog -= page_Dialog4_EventHandler;
+        //    }
+
+        //    var result = JsonSerializer.Deserialize<TopUp>(dialogMessage);
+        //    return result.Status;
+        //}
+
+
+        public async Task<bool> AddPPayAccount()
         {
             var isInitSuccess = await ManaMcontent("https://localhost:44364/dev/visit?url=https://s.manal.ink/np/nfinanc-home");
             if (!isInitSuccess)
             {
-                return "Can not InitPage";
-            }
-            await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/financial-menu");
-            var dialogMessage = string.Empty;
-            page.Dialog += page_Dialog1_EventHandler;
-            await page.ClickAsync("ion-col:has-text(\"เติมเงิน\")");
-            await page.WaitForTimeoutAsync(2000);
-
-            await page.GotoAsync("http://localhost:8100/#/wallet-topup");
-            await page.WaitForTimeoutAsync(2000);
-            page.Dialog += page_Dialog2_EventHandler;
-            await page.ClickAsync("text=devmasterpp");
-            await page.WaitForTimeoutAsync(2000);
-
-            await page.GotoAsync("http://localhost:8100/#/wallet-topup-ppay");
-            await page.WaitForTimeoutAsync(2000);
-            page.Dialog += page_Dialog3_EventHandler;
-            await page.ClickAsync("input[name=\"ion-input-1\"]");
-            await page.WaitForTimeoutAsync(2000);
-            await page.ClickAsync("button");
-            await page.WaitForTimeoutAsync(2000);
-
-            await page.GotoAsync("http://localhost:8100/#/wallet-topup-ppay-confirm");
-            await page.WaitForTimeoutAsync(2000);
-            page.Dialog += page_Dialog4_EventHandler;
-            page.Dialog += page_Dialog5_EventHandler;
-            await page.ClickAsync("button");
-            await page.WaitForTimeoutAsync(5000);
-
-            void page_Dialog1_EventHandler(object sender, IDialog dialog)
-            {
-                dialog.DismissAsync();
-                page.Dialog -= page_Dialog1_EventHandler;
-            }
-            void page_Dialog2_EventHandler(object sender, IDialog dialog)
-            {
-                dialog.DismissAsync();
-                page.Dialog -= page_Dialog2_EventHandler;
-            }
-            void page_Dialog3_EventHandler(object sender, IDialog dialog)
-            {
-                dialog.AcceptAsync("25.00");
-                page.Dialog -= page_Dialog3_EventHandler;
-            }
-            void page_Dialog4_EventHandler(object sender, IDialog dialog)
-            {
-                dialog.DismissAsync();
-                page.Dialog -= page_Dialog4_EventHandler;
-            }
-            void page_Dialog5_EventHandler(object sender, IDialog dialog)
-            {
-                dialogMessage = dialog.Message;
-                dialog.DismissAsync();
-                page.Dialog -= page_Dialog4_EventHandler;
-            }
-
-            var result = JsonSerializer.Deserialize<TopUp>(dialogMessage);
-            return result.Status;
-        }
-
-        public async Task<string> AddPPayAccount()
-        {
-            var isInitSuccess = await ManaMcontent("https://localhost:44364/dev/visit?url=https://s.manal.ink/np/nfinanc-home");
-            if (!isInitSuccess)
-            {
-                return "Can not InitPage";
+                return false;
             }
             var dialogMessage = string.Empty;
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/account-main");
             await page.WaitForTimeoutAsync(2000);
 
+
             var isInitSuccess2 = await ManaMcontent("https://localhost:44364/dev/visit?url=https://s.manal.ink/externalaccount/add/typelist/neaclst-home");
             if (!isInitSuccess2)
             {
-                return "Can not InitPage";
+                return false;
             }
 
-            //await page.GotoAsync("https://localhost:44364/dev/visit?url=https://s.manal.ink/externalaccount/add/typelist/neaclst-home");
-
-            page.Dialog += page_Dialog1_EventHandler;
-            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("https://localhost:44364/dev/visit?url=https://s.manal.ink/externalaccount/add/typelist/neaclst-home");
             await page.GotoAsync("http://localhost:8100/#/account-create-select");
-            page.Dialog += page_Dialog2_EventHandler;
             await page.ClickAsync("text=พร้อมเพย์");
             await page.WaitForTimeoutAsync(2000);
-
             await page.GotoAsync("http://localhost:8100/#/account-create-ppay");
             await page.FillAsync("input[name=\"ion-input-0\"]", "ppay4PW");
             await page.ClickAsync("label:has-text(\"เบอร์โทรศัพท์\")");
             await page.ClickAsync("button:has-text(\"เบอร์โทรศัพท์\")");
             await page.FillAsync("input[name=\"ion-input-1\"]", "0910167715");
             await page.WaitForTimeoutAsync(2000);
-
-
+            await page.ClickAsync("text=OK >> button");
             await page.GotoAsync("http://localhost:8100/#/account-confirm-ppay");
+            await page.ClickAsync("text=OK >> button");
             await page.WaitForTimeoutAsync(2000);
             page.Dialog += page_Dialog3_EventHandler;
-            await page.ClickAsync("text=OK >> button");
-
+            await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog3_EventHandler;
             await page.GotoAsync("http://localhost:8100/#/wallet-topup-ppay");
             await page.WaitForTimeoutAsync(2000);
-            var text = await page.InnerTextAsync("text=กระเป๋าที่เติมเข้า");
+            return true;
 
-            void page_Dialog1_EventHandler(object sender, IDialog dialog)
-            {
-                dialog.DismissAsync();
-                page.Dialog -= page_Dialog1_EventHandler;
-            }
-            void page_Dialog2_EventHandler(object sender, IDialog dialog)
-            {
-                dialog.DismissAsync();
-                page.Dialog -= page_Dialog3_EventHandler;
-            }
             void page_Dialog3_EventHandler(object sender, IDialog dialog)
             {
-                dialog.DismissAsync();
-                page.Dialog -= page_Dialog2_EventHandler;
+                dialog.AcceptAsync();
+                page.Dialog -= page_Dialog3_EventHandler;
             }
-
-            return text;
         }
     }
 }
