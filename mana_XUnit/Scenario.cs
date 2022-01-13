@@ -111,6 +111,38 @@ namespace mana_XUnit
             res.Should().Be("Success");
         }
 
+        [Fact(DisplayName = "สร้าง QR เพื่อเติมเงินเข้ากระเป๋าเงิน Mana ได้")]
+        public async Task TopUpCreateQR()
+        {
+            var sut = new SetUpProject();
+            var res = await sut.TopUpCreateQR();
+            res.Should().Be("Success");
+        }
+
+        [Fact(DisplayName = "ส่ง RTP เพื่อขอเติมเงินไปยังบัญชีธนาคารที่ผูกไว้ได้")]
+        public async Task TopUpbanking()
+        {
+            var sut = new SetUpProject();
+            var res = await sut.TopUpbanking();
+            res.Should().Be("Success");
+        }
+
+
+        [Fact(DisplayName = "ส่งคำขอ KYC basic ได้")]
+        public async Task SendRequestKYCBasic()
+        {        
+            var sut = new SetUpProject();
+            var res = await sut.SendRequestKYCBasic();
+            res.Should().Be("Success");
+        }
+
+        [Fact(DisplayName = "User อนุมัติการเข้าถึงข้อมูลได้")]
+        public async Task UserApproveInfo()
+        {
+            var sut = new SetUpProject();
+            var res = await sut.UserApproveInfo();
+            res.Should().Be("Success");
+        }
 
 
 
@@ -118,17 +150,22 @@ namespace mana_XUnit
 
 
 
-        // ส่ง RTP เพื่อขอเติมเงินไปยังบัญชีธนาคารที่ผูกไว้ได้
-        // ส่ง RTP เพื่อขอเติมเงินไปยังพร้อมเพย์ที่ผูกไว้ได้
-        // สร้าง QR เพื่อเติมเงินเข้ากระเป๋าเงิน Mana ได้
 
+        // User ปฏิเสธการเข้าถึงข้อมูลได้
+        // Manager อนุมัติการเข้าถึงข้อมูลได้
+        // Manager ปฏิเสธการยกเลิกการระงับบัญชีได้
+        // Manager ปฏิเสธการเข้าถึงข้อมูลได้
+        // Manager อนุมัติการระงับบัญชีได้
+        // Manager ปฏิเสธการระงับบัญชีได้
+        // User อนุมัติการเข้าถึงข้อมูลได้
+        // Manager อนุมัติการยกเลิกการระงับบัญชีได้
 
         // ส่งคำขอ KYC basic ได้
+
         // ถอนเงินออกจากกระเป๋าเงิน mana ผ่านบัญชีธนาคารที่ผูกไว้ไม่ได้ เพราะเงินไม่พอ
-        // ถอนเงินจากพร้อมเพย์ที่ผูกไว้ได้
-        // ถอนเงินออกขากร้าน Business เข้ากระเป๋าเงิน Mana ได้
-        // ถอนเงินจากบัญีธนาคารที่ผูกไว้ได้     
         // ถองเงินออกจากกระเป๋าเงิน Mana ผ่านบัญชีพร้อมเพย์ที่ผูกไว้ไม่ได้ เพราะเงินในบัญชีไม่พอ
+        // ถอนเงินจากพร้อมเพย์ที่ผูกไว้ได้
+        // ถอนเงินจากบัญีธนาคารที่ผูกไว้ได้     
 
     }
 }
@@ -142,17 +179,15 @@ namespace mana_XUnit
 // สร้าง QR ร้าน Business ได้
 // ไม่สามารถถอนเงินออกจากกระเป๋าเงิน Mana ผ่านบัญชีพร้อมเพย์ที่ไม่เคยเติมเงินไม่ได้
 // ไม่สามารถถอนเงินออกจากกระเป๋าเงิน Mana ผ่านบัญชีธนาคารไม่เคยเติมเงินไม่ได้
+// ส่ง RTP เพื่อขอเติมเงินไปยังพร้อมเพย์ที่ผูกไว้ได้
+// สร้าง QR เพื่อเติมเงินเข้ากระเป๋าเงิน Mana ได้
+// ส่ง RTP เพื่อขอเติมเงินไปยังบัญชีธนาคารที่ผูกไว้ได้
+// ถอนเงินออกขากร้าน Business เข้ากระเป๋าเงิน Mana ได้
 
 
-// consent case
-// User ปฏิเสธการเข้าถึงข้อมูลได้
-// Manager อนุมัติการเข้าถึงข้อมูลได้
-// Manager ปฏิเสธการยกเลิกการระงับบัญชีได้
-// Manager ปฏิเสธการเข้าถึงข้อมูลได้
-// Manager อนุมัติการระงับบัญชีได้
-// Manager ปฏิเสธการระงับบัญชีได้
-// User อนุมัติการเข้าถึงข้อมูลได้
-// Manager อนุมัติการยกเลิกการระงับบัญชีได้
+
+
+
 
 
 
