@@ -144,21 +144,37 @@ namespace mana_XUnit
             res.Should().Be("Success");
         }
 
+        [Fact(DisplayName = "User ปฏิเสธการเข้าถึงข้อมูลได้")]
+        public async Task UserRejectInfo()
+        {
+            var sut = new SetUpProject();
+            var res = await sut.UserRejectInfo();
+            res.Should().Be("Success");
+        }
+
+        [Fact(DisplayName = "Manager อนุมัติการเข้าถึงข้อมูลได้")]
+        public async Task ManagerApproveInfo()
+        {
+            var sut = new SetUpProject();
+            var res = await sut.ManagerApproveInfo();
+            res.Should().Be("Success");
+        }
+
+        [Fact(DisplayName = "Manager ปฏิเสธการเข้าถึงข้อมูลได้")]
+        public async Task ManagerRejectInfo()
+        {
+            var sut = new SetUpProject();
+            var res = await sut.ManagerRejectInfo();
+            res.Should().Be("Success");
+        }
 
 
-
-
-
-
-
-        // User ปฏิเสธการเข้าถึงข้อมูลได้
-        // Manager อนุมัติการเข้าถึงข้อมูลได้
         // Manager ปฏิเสธการยกเลิกการระงับบัญชีได้
-        // Manager ปฏิเสธการเข้าถึงข้อมูลได้
+        // Manager อนุมัติการยกเลิกการระงับบัญชีได้
+
         // Manager อนุมัติการระงับบัญชีได้
         // Manager ปฏิเสธการระงับบัญชีได้
-        // User อนุมัติการเข้าถึงข้อมูลได้
-        // Manager อนุมัติการยกเลิกการระงับบัญชีได้
+
 
         // ส่งคำขอ KYC basic ได้
 
@@ -183,6 +199,10 @@ namespace mana_XUnit
 // สร้าง QR เพื่อเติมเงินเข้ากระเป๋าเงิน Mana ได้
 // ส่ง RTP เพื่อขอเติมเงินไปยังบัญชีธนาคารที่ผูกไว้ได้
 // ถอนเงินออกขากร้าน Business เข้ากระเป๋าเงิน Mana ได้
+// User อนุมัติการเข้าถึงข้อมูลได้
+// User ปฏิเสธการเข้าถึงข้อมูลได้
+// Manager อนุมัติการเข้าถึงข้อมูลได้
+// Manager ปฏิเสธการเข้าถึงข้อมูลได้
 
 
 

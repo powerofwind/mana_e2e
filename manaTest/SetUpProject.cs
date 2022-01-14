@@ -582,17 +582,17 @@ namespace manaTest
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/home-feed");
             await page.ClickAsync("ion-row:has-text(\"mana official 3 daขออนุญาติเข้าถึงข้อมูลผู้ใช้งาน\")");
-            //await page.ClickAsync("text=ขออนุญาติเข้าถึงข้อมูลผู้ใช้งาน");
-            //await page.ClickAsync("text=mana official");
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/consent-userinfo-by-user");
             await page.WaitForTimeoutAsync(2000);
             await page.ClickAsync("label:has-text(\"อนุญาต\")");
             await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog2_EventHandler;
+            await page.WaitForTimeoutAsync(2000);
             page.Dialog += page_Dialog1_EventHandler;
             await page.WaitForTimeoutAsync(2000);
             await page.ClickAsync("button");
-            await page.WaitForTimeoutAsync(2000);
+            await page.WaitForTimeoutAsync(4000);
 
             var result = JsonSerializer.Deserialize<ResultDlg>(dialogMessage);
             return result.status;
@@ -602,6 +602,139 @@ namespace manaTest
                 dialogMessage = dialog.Message;
                 dialog.DismissAsync();
                 page.Dialog -= page_Dialog1_EventHandler;
+            }
+
+            void page_Dialog2_EventHandler(object sender, IDialog dialog)
+            {
+                dialog.AcceptAsync();
+                page.Dialog -= page_Dialog2_EventHandler;
+            }
+        }
+
+        // User ปฏิเสธการเข้าถึงข้อมูลได้
+        public async Task<string> UserRejectInfo()
+        {
+            var isInitSuccess = await ManaMcontent("https://localhost:44364/dev/visit?url=test-home-feed");
+
+            if (!isInitSuccess)
+            {
+                return "Can not InitPage";
+            }
+
+            var dialogMessage = string.Empty;
+            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/home-feed");
+            await page.ClickAsync("ion-row:has-text(\"mana official 3 daขออนุญาติเข้าถึงข้อมูลผู้ใช้งาน\")");
+            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/consent-userinfo-by-user");
+            await page.WaitForTimeoutAsync(2000);
+            await page.ClickAsync("label:has-text(\"ปฏิเสธ\")");
+            await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog2_EventHandler;
+            await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog1_EventHandler;
+            await page.WaitForTimeoutAsync(2000);
+            await page.ClickAsync("button");
+            await page.WaitForTimeoutAsync(4000);
+
+            var result = JsonSerializer.Deserialize<ResultDlg>(dialogMessage);
+            return result.status;
+
+            void page_Dialog1_EventHandler(object sender, IDialog dialog)
+            {
+                dialogMessage = dialog.Message;
+                dialog.DismissAsync();
+                page.Dialog -= page_Dialog1_EventHandler;
+            }
+
+            void page_Dialog2_EventHandler(object sender, IDialog dialog)
+            {
+                dialog.AcceptAsync();
+                page.Dialog -= page_Dialog2_EventHandler;
+            }
+        }
+
+        // Manager อนุมัติการเข้าถึงข้อมูลได้
+        public async Task<string> ManagerApproveInfo()
+        {
+            var isInitSuccess = await ManaMcontent("https://localhost:44364/dev/visit?url=test-home-feed");
+
+            if (!isInitSuccess)
+            {
+                return "Can not InitPage";
+            }
+
+            var dialogMessage = string.Empty;
+            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/home-feed");
+            await page.ClickAsync("ion-row:has-text(\"mana official 3 daขออนุญาติเข้าถึงข้อมูลผู้ใช้งาน\")");
+            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/consent-userinfo-by-manager");
+            await page.WaitForTimeoutAsync(2000);
+            await page.ClickAsync("label:has-text(\"อนุญาต\")");
+            await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog2_EventHandler;
+            await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog1_EventHandler;
+            await page.WaitForTimeoutAsync(2000);
+            await page.ClickAsync("button");
+            await page.WaitForTimeoutAsync(4000);
+            var result = JsonSerializer.Deserialize<ResultDlg>(dialogMessage);
+            return result.status;
+
+            void page_Dialog1_EventHandler(object sender, IDialog dialog)
+            {
+                dialogMessage = dialog.Message;
+                dialog.DismissAsync();
+                page.Dialog -= page_Dialog1_EventHandler;
+            }
+
+            void page_Dialog2_EventHandler(object sender, IDialog dialog)
+            {
+                dialog.AcceptAsync();
+                page.Dialog -= page_Dialog2_EventHandler;
+            }
+        }
+
+        // Manager ปฏิเสธการเข้าถึงข้อมูลได้
+        public async Task<string> ManagerRejectInfo()
+        {
+            var isInitSuccess = await ManaMcontent("https://localhost:44364/dev/visit?url=test-home-feed");
+
+            if (!isInitSuccess)
+            {
+                return "Can not InitPage";
+            }
+
+            var dialogMessage = string.Empty;
+            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/home-feed");
+            await page.ClickAsync("ion-row:has-text(\"mana official 3 daขออนุญาติเข้าถึงข้อมูลผู้ใช้งาน\")");
+            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/consent-userinfo-by-manager");
+            await page.WaitForTimeoutAsync(2000);
+            await page.ClickAsync("label:has-text(\"ปฏิเสธ\")");
+            await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog2_EventHandler;
+            await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog1_EventHandler;
+            await page.WaitForTimeoutAsync(2000);
+            await page.ClickAsync("button");
+            await page.WaitForTimeoutAsync(4000);
+            var result = JsonSerializer.Deserialize<ResultDlg>(dialogMessage);
+            return result.status;
+
+            void page_Dialog1_EventHandler(object sender, IDialog dialog)
+            {
+                dialogMessage = dialog.Message;
+                dialog.DismissAsync();
+                page.Dialog -= page_Dialog1_EventHandler;
+            }
+
+            void page_Dialog2_EventHandler(object sender, IDialog dialog)
+            {
+                dialog.AcceptAsync();
+                page.Dialog -= page_Dialog2_EventHandler;
             }
         }
     }
