@@ -168,12 +168,47 @@ namespace mana_XUnit
             res.Should().Be("Success");
         }
 
+        [Fact(DisplayName = "Manager อนุมัติการระงับบัญชีได้")]
+        public async Task ManagerApproveSuspendAccount()
+        {
+            var sut = new SetUpProject();
+            var res = await sut.ManagerApproveSuspendAccount();
+            res.Should().Be("Success");
+        }
 
-        // Manager ปฏิเสธการยกเลิกการระงับบัญชีได้
-        // Manager อนุมัติการยกเลิกการระงับบัญชีได้
+        [Fact(DisplayName = "Manager ปฏิเสธการระงับบัญชีได้")]
+        public async Task ManagerRejectSuspendAccount()
+        {
+            var sut = new SetUpProject();
+            var res = await sut.ManagerRejectSuspendAccount();
+            res.Should().Be("Success");
+        }
 
-        // Manager อนุมัติการระงับบัญชีได้
-        // Manager ปฏิเสธการระงับบัญชีได้
+        [Fact(DisplayName = "Manager อนุมัติการยกเลิกการระงับบัญชีได้")]
+        public async Task ManagerApproveCancelSuspendAccount()
+        {
+            var sut = new SetUpProject();
+            var res = await sut.ManagerApproveCancelSuspendAccount();
+            res.Should().Be("Success");
+        }
+
+        [Fact(DisplayName = "Manager ปฏิเสธการยกเลิกการระงับบัญชีได้")]
+        public async Task ManagerRejectCancelSuspendAccount()
+        {
+            var sut = new SetUpProject();
+            var res = await sut.ManagerRejectCancelSuspendAccount();
+            res.Should().Be("Success");
+        }
+
+        [Fact(DisplayName = "ถอนเงินออกจากร้าน Business เข้ากระเป๋าเงิน Mana ได้")]
+        public async Task withdrawBusinessShop()
+        {
+            var sut = new SetUpProject();
+            var res = await sut.withdrawBusinessShop();
+            res.Should().Be("Success");
+        }
+
+
 
 
         // ส่งคำขอ KYC basic ได้
@@ -203,6 +238,10 @@ namespace mana_XUnit
 // User ปฏิเสธการเข้าถึงข้อมูลได้
 // Manager อนุมัติการเข้าถึงข้อมูลได้
 // Manager ปฏิเสธการเข้าถึงข้อมูลได้
+// Manager ปฏิเสธการยกเลิกการระงับบัญชีได้
+// Manager อนุมัติการยกเลิกการระงับบัญชีได้
+// Manager อนุมัติการระงับบัญชีได้
+// Manager ปฏิเสธการระงับบัญชีได้
 
 
 

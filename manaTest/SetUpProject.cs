@@ -300,11 +300,11 @@ namespace manaTest
             var dialogMessage = string.Empty;
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/financial-menu");
-            await page.ClickAsync("text=เติมเงินMana WalletXTHB8,792.00ถอนเงิน >> :nth-match(img, 3)");
+            await page.ClickAsync("text=เติมเงินMana WalletXTHB8,813.00ถอนเงิน >> :nth-match(img, 3)");
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/wallet-withdraw");
             page.Dialog += page_Dialog1_EventHandler;
-            await page.ClickAsync("text=pprora0910167715");
+            await page.ClickAsync("text=ppteste220632138965");
             await page.GotoAsync("http://localhost:8100/#/wallet-topup-ppay");
             return true;
 
@@ -328,11 +328,11 @@ namespace manaTest
             var dialogMessage = string.Empty;
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/financial-menu");
-            await page.ClickAsync("text=เติมเงินMana WalletXTHB8,792.00ถอนเงิน >> :nth-match(img, 3)");
+            await page.ClickAsync("text=เติมเงินMana WalletXTHB8,813.00ถอนเงิน >> :nth-match(img, 3)");
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/wallet-withdraw");
             page.Dialog += page_Dialog2_EventHandler;
-            await page.ClickAsync("text=bank0123456789123");
+            await page.ClickAsync("text=bankteste224520342438");
             await page.GotoAsync("http://localhost:8100/#/wallet-topup-bankaccount");
             return true;
 
@@ -408,7 +408,7 @@ namespace manaTest
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/financial-menu");
             var dialogMessage = string.Empty;
-            await page.ClickAsync("text=เติมเงินMana WalletXTHB8,792.00ถอนเงิน >> img");
+            await page.ClickAsync("text=เติมเงินMana WalletXTHB8,813.00ถอนเงิน >> img");
             await page.WaitForTimeoutAsync(1000);
             await page.GotoAsync("http://localhost:8100/#/wallet-topup");
             await page.ClickAsync("text=สร้างคิวอาร์โค้ดเพื่อเติมเงิน");
@@ -460,7 +460,7 @@ namespace manaTest
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/financial-menu");
             var dialogMessage = string.Empty;
-            await page.ClickAsync("text=เติมเงินMana WalletXTHB8,799.00ถอนเงิน >> img");
+            await page.ClickAsync("text=เติมเงินMana WalletXTHB8,813.00ถอนเงิน >> img");
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/wallet-topup");
             await page.ClickAsync("text=0123456789123");
@@ -502,7 +502,7 @@ namespace manaTest
             }
         }
 
-        // ถอนเงินออกขากร้าน Business เข้ากระเป๋าเงิน Mana ได้
+        // ถอนเงินออกจากร้าน Business เข้ากระเป๋าเงิน Mana ได้
         public async Task<string> withdrawBusinessShop()
         {
             var isInitSuccess = await ManaMcontent("https://localhost:44364/dev/visit?url=https://s.manal.ink/np/nbizdtl-637623474056077116$basic$shop");
@@ -712,6 +712,173 @@ namespace manaTest
             await page.ClickAsync("ion-row:has-text(\"mana official 3 daขออนุญาติเข้าถึงข้อมูลผู้ใช้งาน\")");
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/consent-userinfo-by-manager");
+            await page.WaitForTimeoutAsync(2000);
+            await page.ClickAsync("label:has-text(\"ปฏิเสธ\")");
+            await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog2_EventHandler;
+            await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog1_EventHandler;
+            await page.WaitForTimeoutAsync(2000);
+            await page.ClickAsync("button");
+            await page.WaitForTimeoutAsync(4000);
+            var result = JsonSerializer.Deserialize<ResultDlg>(dialogMessage);
+            return result.status;
+
+            void page_Dialog1_EventHandler(object sender, IDialog dialog)
+            {
+                dialogMessage = dialog.Message;
+                dialog.DismissAsync();
+                page.Dialog -= page_Dialog1_EventHandler;
+            }
+
+            void page_Dialog2_EventHandler(object sender, IDialog dialog)
+            {
+                dialog.AcceptAsync();
+                page.Dialog -= page_Dialog2_EventHandler;
+            }
+        }
+
+        // Manager อนุมัติการระงับบัญชีได้
+        public async Task<string> ManagerApproveSuspendAccount()
+        {
+            var isInitSuccess = await ManaMcontent("https://localhost:44364/dev/visit?url=test-home-feed");
+
+            if (!isInitSuccess)
+            {
+                return "Can not InitPage";
+            }
+
+            var dialogMessage = string.Empty;
+            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/home-feed");
+            await page.ClickAsync("ion-row:has-text(\"mana official 3 daขอระงับบัญชีของผู้ใช้งาน\")");
+            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/consent-freezing-by-manager");
+            await page.WaitForTimeoutAsync(2000);
+            await page.ClickAsync("label:has-text(\"อนุญาต\")");
+            await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog2_EventHandler;
+            await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog1_EventHandler;
+            await page.WaitForTimeoutAsync(2000);
+            await page.ClickAsync("button");
+            await page.WaitForTimeoutAsync(4000);
+            var result = JsonSerializer.Deserialize<ResultDlg>(dialogMessage);
+            return result.status;
+
+            void page_Dialog1_EventHandler(object sender, IDialog dialog)
+            {
+                dialogMessage = dialog.Message;
+                dialog.DismissAsync();
+                page.Dialog -= page_Dialog1_EventHandler;
+            }
+
+            void page_Dialog2_EventHandler(object sender, IDialog dialog)
+            {
+                dialog.AcceptAsync();
+                page.Dialog -= page_Dialog2_EventHandler;
+            }
+        }
+
+        // Manager ปฏิเสธการระงับบัญชีได้
+        public async Task<string> ManagerRejectSuspendAccount()
+        {
+            var isInitSuccess = await ManaMcontent("https://localhost:44364/dev/visit?url=test-home-feed");
+
+            if (!isInitSuccess)
+            {
+                return "Can not InitPage";
+            }
+
+            var dialogMessage = string.Empty;
+            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/home-feed");
+            await page.ClickAsync("ion-row:has-text(\"mana official 3 daขอระงับบัญชีของผู้ใช้งาน\")");
+            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/consent-freezing-by-manager");
+            await page.WaitForTimeoutAsync(2000);
+            await page.ClickAsync("label:has-text(\"ปฏิเสธ\")");
+            await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog2_EventHandler;
+            await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog1_EventHandler;
+            await page.WaitForTimeoutAsync(2000);
+            await page.ClickAsync("button");
+            await page.WaitForTimeoutAsync(4000);
+            var result = JsonSerializer.Deserialize<ResultDlg>(dialogMessage);
+            return result.status;
+
+            void page_Dialog1_EventHandler(object sender, IDialog dialog)
+            {
+                dialogMessage = dialog.Message;
+                dialog.DismissAsync();
+                page.Dialog -= page_Dialog1_EventHandler;
+            }
+
+            void page_Dialog2_EventHandler(object sender, IDialog dialog)
+            {
+                dialog.AcceptAsync();
+                page.Dialog -= page_Dialog2_EventHandler;
+            }
+        }
+
+        // Manager อนุมัติการยกเลิกการระงับบัญชีได้
+        public async Task<string> ManagerApproveCancelSuspendAccount()
+        {
+            var isInitSuccess = await ManaMcontent("https://localhost:44364/dev/visit?url=test-home-feed");
+
+            if (!isInitSuccess)
+            {
+                return "Can not InitPage";
+            }
+
+            var dialogMessage = string.Empty;
+            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/home-feed");
+            await page.ClickAsync("ion-row:has-text(\"mana official 3 daขอยกเลิกระงับบัญชีของผู้ใช้งาน\")"); await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/consent-unfreezing-by-manager");
+            await page.WaitForTimeoutAsync(2000);
+            await page.ClickAsync("label:has-text(\"อนุญาต\")");
+            await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog2_EventHandler;
+            await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog1_EventHandler;
+            await page.WaitForTimeoutAsync(2000);
+            await page.ClickAsync("button");
+            await page.WaitForTimeoutAsync(4000);
+            var result = JsonSerializer.Deserialize<ResultDlg>(dialogMessage);
+            return result.status;
+
+            void page_Dialog1_EventHandler(object sender, IDialog dialog)
+            {
+                dialogMessage = dialog.Message;
+                dialog.DismissAsync();
+                page.Dialog -= page_Dialog1_EventHandler;
+            }
+
+            void page_Dialog2_EventHandler(object sender, IDialog dialog)
+            {
+                dialog.AcceptAsync();
+                page.Dialog -= page_Dialog2_EventHandler;
+            }
+        }
+
+        // Manager ปฏิเสธการยกเลิกการระงับบัญชีได้
+        public async Task<string> ManagerRejectCancelSuspendAccount()
+        {
+            var isInitSuccess = await ManaMcontent("https://localhost:44364/dev/visit?url=test-home-feed");
+
+            if (!isInitSuccess)
+            {
+                return "Can not InitPage";
+            }
+
+            var dialogMessage = string.Empty;
+            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/home-feed");
+            await page.ClickAsync("ion-row:has-text(\"mana official 3 daขอยกเลิกระงับบัญชีของผู้ใช้งาน\")");
+            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/consent-unfreezing-by-manager");
             await page.WaitForTimeoutAsync(2000);
             await page.ClickAsync("label:has-text(\"ปฏิเสธ\")");
             await page.WaitForTimeoutAsync(2000);
