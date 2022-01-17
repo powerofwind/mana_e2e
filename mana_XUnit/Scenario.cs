@@ -200,24 +200,47 @@ namespace mana_XUnit
             res.Should().Be("Success");
         }
 
-        [Fact(DisplayName = "ถอนเงินออกจากร้าน Business เข้ากระเป๋าเงิน Mana ได้")]
-        public async Task withdrawBusinessShop()
+        //[Fact(DisplayName = "ถอนเงินออกจากร้าน Business เข้ากระเป๋าเงิน Mana ได้")]
+        //public async Task withdrawBusinessShop()
+        //{
+        //    var sut = new SetUpProject();
+        //    var res = await sut.withdrawBusinessShop();
+        //    res.Should().Be("Success");
+        //}
+
+        [Fact(DisplayName = "ถอนเงินจากพร้อมเพย์ที่ผูกไว้ได้")]
+        public async Task WithdrawPPaySuccess()
         {
             var sut = new SetUpProject();
-            var res = await sut.withdrawBusinessShop();
-            res.Should().Be("Success");
+            var res = await sut.WithdrawPPaySuccess();
+            res.Should().Be("Fail");
         }
 
+        [Fact(DisplayName = "ถอนเงินจากบัญีธนาคารที่ผูกไว้ได้")]
+        public async Task WithdrawBankingSuccess()
+        {
+            var sut = new SetUpProject();
+            var res = await sut.WithdrawBankingSuccess();
+            res.Should().Be("Fail");
+        }
 
+        [Fact(DisplayName = "ถอนเงินออกจากกระเป๋าเงิน Mana ผ่านบัญชีพร้อมเพย์ที่ผูกไว้ไม่ได้ เพราะเงินในบัญชีไม่พอ")]
+        public async Task NotWithdrawPPayMoneyNotEnough()
+        {
+            var sut = new SetUpProject();
+            var res = await sut.NotWithdrawPPayMoneyNotEnough();
+            res.Should().Be("Fail");
+        }
 
+        [Fact(DisplayName = "ถอนเงินออกจากกระเป๋าเงิน mana ผ่านบัญชีธนาคารที่ผูกไว้ไม่ได้ เพราะเงินไม่พอ")]
+        public async Task NotWithdrawBankingMoneyNotEnough()
+        {
+            var sut = new SetUpProject();
+            var res = await sut.NotWithdrawBankingMoneyNotEnough();
+            res.Should().Be("Fail");
+        }
 
         // ส่งคำขอ KYC basic ได้
-
-        // ถอนเงินออกจากกระเป๋าเงิน mana ผ่านบัญชีธนาคารที่ผูกไว้ไม่ได้ เพราะเงินไม่พอ
-        // ถองเงินออกจากกระเป๋าเงิน Mana ผ่านบัญชีพร้อมเพย์ที่ผูกไว้ไม่ได้ เพราะเงินในบัญชีไม่พอ
-        // ถอนเงินจากพร้อมเพย์ที่ผูกไว้ได้
-        // ถอนเงินจากบัญีธนาคารที่ผูกไว้ได้     
-
     }
 }
 
@@ -242,6 +265,11 @@ namespace mana_XUnit
 // Manager อนุมัติการยกเลิกการระงับบัญชีได้
 // Manager อนุมัติการระงับบัญชีได้
 // Manager ปฏิเสธการระงับบัญชีได้
+// ถอนเงินจากพร้อมเพย์ที่ผูกไว้ได้
+// ถอนเงินจากบัญีธนาคารที่ผูกไว้ได้ 
+// ถอนเงินออกจากกระเป๋าเงิน mana ผ่านบัญชีธนาคารที่ผูกไว้ไม่ได้ เพราะเงินไม่พอ
+// ถอนเงินออกจากกระเป๋าเงิน Mana ผ่านบัญชีพร้อมเพย์ที่ผูกไว้ไม่ได้ เพราะเงินในบัญชีไม่พอ
+
 
 
 
