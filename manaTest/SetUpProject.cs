@@ -300,6 +300,7 @@ namespace manaTest
             var dialogMessage = string.Empty;
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/financial-menu");
+            await page.WaitForTimeoutAsync(2000);
             await page.ClickAsync("text=เติมเงินMana WalletXTHB3,813.00ถอนเงิน >> :nth-match(img, 3)");
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/wallet-withdraw");
@@ -328,6 +329,7 @@ namespace manaTest
             var dialogMessage = string.Empty;
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/financial-menu");
+            await page.WaitForTimeoutAsync(2000);
             await page.ClickAsync("text=เติมเงินMana WalletXTHB3,813.00ถอนเงิน >> :nth-match(img, 3)");
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/wallet-withdraw");
@@ -416,6 +418,7 @@ namespace manaTest
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/financial-menu");
             var dialogMessage = string.Empty;
+            await page.WaitForTimeoutAsync(2000);
             await page.ClickAsync("text=เติมเงินMana WalletXTHB3,813.00ถอนเงิน >> img");
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/wallet-withdraw");
@@ -782,11 +785,11 @@ namespace manaTest
             await page.GotoAsync("http://localhost:8100/#/kyc-agreement");
             await page.ClickAsync("button");
             await page.GotoAsync("http://localhost:8100/#/kyc-basic-create");
-            await page.ClickAsync("input[name=\"ion-input-0\"]");
-            await page.FillAsync("input[name=\"ion-input-0\"]", "เตชะพงศ์");
-            await page.ClickAsync("input[name=\"ion-input-1\"]");
-            await page.FillAsync("input[name=\"ion-input-1\"]", "ขำคม");
-            await page.ClickAsync("button");
+            //await page.ClickAsync("input[name=\"ion-input-0\"]");
+            //await page.FillAsync("input[name=\"ion-input-0\"]", "เตชะพงศ์");
+            //await page.ClickAsync("input[name=\"ion-input-1\"]");
+            //await page.FillAsync("input[name=\"ion-input-1\"]", "ขำคม");
+            //await page.ClickAsync("button");
             //// วันเกิด
             ////await page.ClickAsync("text=17");
             ////await page.ClickAsync("text=15");
@@ -834,20 +837,30 @@ namespace manaTest
             ////await page.ClickAsync("text=1993");
             ////await page.ClickAsync("text=1992");
             ////await page.ClickAsync("text=1991");
-            await page.ClickAsync("text=Done");
-            await page.ClickAsync("input[name=\"ion-input-2\"]");
-            await page.FillAsync("input[name=\"ion-input-2\"]", "1349900417320");
-            await page.ClickAsync("input[name=\"ion-input-3\"]");
-            await page.FillAsync("input[name=\"ion-input-3\"]", "ME1213211235");
-            await page.ClickAsync("text=ระบุที่อยู่ตามบัตร ปชช.");
+            //await page.ClickAsync("text=Done");
+            //await page.ClickAsync("input[name=\"ion-input-2\"]");
+            //await page.FillAsync("input[name=\"ion-input-2\"]", "1349900417320");
+            //await page.ClickAsync("input[name=\"ion-input-3\"]");
+            //await page.FillAsync("input[name=\"ion-input-3\"]", "ME1213211235");
+            //await page.ClickAsync("text=ระบุที่อยู่ตามบัตร ปชช.");
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/kyc-add-address");   
             await page.WaitForTimeoutAsync(2000);
-
-            // ใช้คำสั่ง playwright ใส่ค่าใน http://localhost:8100/#/kyc-add-address ไม่ได้ แต่กดปุ่มได้         
-            await page.ClickAsync("input[name=\"ion-input-0\"]");
-            await page.FillAsync("input[name=\"ion-input-0\"]", "8");
+            await page.ClickAsync("input[name=\"ion-input-4\"]");
+            await page.FillAsync("input[name=\"ion-input-4\"]", "9/1");
+            await page.ClickAsync("input[name=\"ion-input-5\"]");
+            await page.FillAsync("input[name=\"ion-input-5\"]", "ในเมือง");
+            await page.ClickAsync("input[name=\"ion-input-6\"]");
+            await page.FillAsync("input[name=\"ion-input-6\"]", "เมือง");
+            await page.ClickAsync("input[name=\"ion-input-7\"]");
+            await page.FillAsync("input[name=\"ion-input-7\"]", "อุบลราชธานี");
+            await page.ClickAsync("input[name=\"ion-input-8\"]");
+            await page.FillAsync("input[name=\"ion-input-8\"]", "34000");
+            await page.ClickAsync("input[name=\"ion-input-9\"]");
+            await page.FillAsync("input[name=\"ion-input-9\"]", "0632130558");
             await page.ClickAsync("button");
+            await page.GotoAsync("http://localhost:8100/#/kyc-basic-create");
+
             return "Success";
         }
 
