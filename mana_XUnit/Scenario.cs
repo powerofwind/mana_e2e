@@ -200,20 +200,20 @@ namespace mana_XUnit
             res.Should().Be("Success");
         }
 
-        //[Fact(DisplayName = "ถอนเงินออกจากร้าน Business เข้ากระเป๋าเงิน Mana ได้")]
-        //public async Task withdrawBusinessShop()
-        //{
-        //    var sut = new SetUpProject();
-        //    var res = await sut.withdrawBusinessShop();
-        //    res.Should().Be("Success");
-        //}
+        [Fact(DisplayName = "ถอนเงินออกจากร้าน Business เข้ากระเป๋าเงิน Mana ได้")]
+        public async Task withdrawBusinessShop()
+        {
+            var sut = new SetUpProject();
+            var res = await sut.withdrawBusinessShop();
+            res.Should().Be("Success");
+        }
 
         [Fact(DisplayName = "ถอนเงินจากพร้อมเพย์ที่ผูกไว้ได้")]
         public async Task WithdrawPPaySuccess()
         {
             var sut = new SetUpProject();
             var res = await sut.WithdrawPPaySuccess();
-            res.Should().Be("Fail");
+            res.Should().Be("Success");
         }
 
         [Fact(DisplayName = "ถอนเงินจากบัญีธนาคารที่ผูกไว้ได้")]
@@ -221,7 +221,7 @@ namespace mana_XUnit
         {
             var sut = new SetUpProject();
             var res = await sut.WithdrawBankingSuccess();
-            res.Should().Be("Fail");
+            res.Should().Be("Success");
         }
 
         [Fact(DisplayName = "ถอนเงินออกจากกระเป๋าเงิน Mana ผ่านบัญชีพร้อมเพย์ที่ผูกไว้ไม่ได้ เพราะเงินในบัญชีไม่พอ")]
@@ -240,7 +240,7 @@ namespace mana_XUnit
             res.Should().Be("Fail");
         }
 
-        // ส่งคำขอ KYC basic ได้
+        // ส่งคำขอ KYC basic ได้ (รอส่งข้อมูลข้ามหน้า)
     }
 }
 

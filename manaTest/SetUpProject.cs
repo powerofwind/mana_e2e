@@ -362,10 +362,10 @@ namespace manaTest
             await page.GotoAsync("http://localhost:8100/#/financial-menu");
             var dialogMessage = string.Empty;
             await page.WaitForTimeoutAsync(2000);
-            await page.ClickAsync("text=เติมเงินMana WalletXTHB3,813.00ถอนเงิน >> img");
+            await page.ClickAsync("text=เติมเงินMana WalletXTHB3,597.00ถอนเงิน >> img");
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/wallet-withdraw");
-            await page.WaitForTimeoutAsync(1000);
+            await page.WaitForTimeoutAsync(2000);
             await page.ClickAsync("text=pprora0910167715");
             await page.GotoAsync("http://localhost:8100/#/wallet-withdraw-bankaccount");
             await page.WaitForTimeoutAsync(2000);
@@ -380,8 +380,7 @@ namespace manaTest
             await page.WaitForTimeoutAsync(2000);
             page.Dialog += page_Dialog5_EventHandler;
             await page.ClickAsync("button");
-            await page.WaitForTimeoutAsync(2000);
-
+            await page.WaitForTimeoutAsync(7000);
 
             var result = JsonSerializer.Deserialize<ResultDlg>(dialogMessage);
             return result.status;
@@ -389,7 +388,7 @@ namespace manaTest
 
             void page_Dialog3_EventHandler(object sender, IDialog dialog)
             {
-                dialog.AcceptAsync("100.00");
+                dialog.AcceptAsync("1.00");
                 page.Dialog -= page_Dialog3_EventHandler;
             }
 
@@ -407,6 +406,7 @@ namespace manaTest
 
         }
 
+       
         // ถอนเงินจากบัญีธนาคารที่ผูกไว้ได้ 
         public async Task<string> WithdrawBankingSuccess()
         {
@@ -421,10 +421,10 @@ namespace manaTest
             await page.GotoAsync("http://localhost:8100/#/financial-menu");
             var dialogMessage = string.Empty;
             await page.WaitForTimeoutAsync(2000);
-            await page.ClickAsync("text=เติมเงินMana WalletXTHB3,813.00ถอนเงิน >> img");
+            await page.ClickAsync("text=เติมเงินMana WalletXTHB3,599.00ถอนเงิน >> img");
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/wallet-withdraw");
-            await page.WaitForTimeoutAsync(2000);
+            await page.WaitForTimeoutAsync(1000);
             await page.ClickAsync("text=bank0123456789123");
             await page.GotoAsync("http://localhost:8100/#/wallet-withdraw-bankaccount");
             await page.WaitForTimeoutAsync(2000);
@@ -439,7 +439,7 @@ namespace manaTest
             await page.WaitForTimeoutAsync(2000);
             page.Dialog += page_Dialog5_EventHandler;
             await page.ClickAsync("button");
-            await page.WaitForTimeoutAsync(2000);
+            await page.WaitForTimeoutAsync(7000);
 
             var result = JsonSerializer.Deserialize<ResultDlg>(dialogMessage);
             return result.status;
@@ -447,7 +447,7 @@ namespace manaTest
 
             void page_Dialog3_EventHandler(object sender, IDialog dialog)
             {
-                dialog.AcceptAsync("100.00");
+                dialog.AcceptAsync("1.00");
                 page.Dialog -= page_Dialog3_EventHandler;
             }
 
@@ -512,8 +512,6 @@ namespace manaTest
                 dialog.DismissAsync();
                 page.Dialog -= page_Dialog5_EventHandler;
             }
-
-
         }
 
         // ถอนเงินออกจากกระเป๋าเงิน mana ผ่านบัญชีธนาคารที่ผูกไว้ไม่ได้ เพราะเงินไม่พอ
@@ -564,163 +562,6 @@ namespace manaTest
             }
         }
 
-        // ส่ง RTP เพื่อขอเติมเงินไปยังพร้อมเพย์ที่ผูกไว้ได้
-        public async Task<string> TopUpPPay()
-        {
-            var isInitSuccess = await ManaMcontent("https://localhost:44364/dev/visit?url=https://s.manal.ink/np/nfinanc-home");
-            if (!isInitSuccess)
-            {
-                return "Can not InitPage";
-            }
-            await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/financial-menu");
-            var dialogMessage = string.Empty;
-            await page.ClickAsync("text=เติมเงินMana WalletXTHB3,813.00ถอนเงิน >> img");
-            await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/wallet-topup");
-            await page.ClickAsync("text=0910167715");
-            await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/wallet-topup-ppay");
-            await page.WaitForTimeoutAsync(2000);
-            page.Dialog += page_Dialog3_EventHandler;
-            await page.ClickAsync("input[name=\"ion-input-1\"]");
-            await page.WaitForTimeoutAsync(2000);
-            await page.ClickAsync("button");
-            await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/wallet-topup-ppay-confirm");
-            await page.WaitForTimeoutAsync(2000);
-            page.Dialog += page_Dialog2_EventHandler;
-            await page.WaitForTimeoutAsync(2000);
-            page.Dialog += page_Dialog5_EventHandler;
-            await page.ClickAsync("button");
-
-            var result = JsonSerializer.Deserialize<ResultDlg>(dialogMessage);
-            return result.status;
-
-            void page_Dialog3_EventHandler(object sender, IDialog dialog)
-            {
-                dialog.AcceptAsync("25.00");
-                page.Dialog -= page_Dialog3_EventHandler;
-            }
-
-            void page_Dialog2_EventHandler(object sender, IDialog dialog)
-            {
-                dialog.AcceptAsync();
-                page.Dialog -= page_Dialog2_EventHandler;
-            }
-            void page_Dialog5_EventHandler(object sender, IDialog dialog)
-            {
-                dialogMessage = dialog.Message;
-                dialog.DismissAsync();
-                page.Dialog -= page_Dialog2_EventHandler;
-            }
-        }
-
-        // สร้าง QR เพื่อเติมเงินเข้ากระเป๋าเงิน Mana ได้
-        public async Task<string> TopUpCreateQR()
-        {
-            var isInitSuccess = await ManaMcontent("https://localhost:44364/dev/visit?url=https://s.manal.ink/np/nfinanc-home");
-            if (!isInitSuccess)
-            {
-                return "Can not InitPage";
-            }
-            await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/financial-menu");
-            var dialogMessage = string.Empty;
-            await page.ClickAsync("text=เติมเงินMana WalletXTHB3,813.00ถอนเงิน >> img");
-            await page.WaitForTimeoutAsync(1000);
-            await page.GotoAsync("http://localhost:8100/#/wallet-topup");
-            await page.ClickAsync("text=สร้างคิวอาร์โค้ดเพื่อเติมเงิน");
-            await page.WaitForTimeoutAsync(1000);
-            await page.GotoAsync("http://localhost:8100/#/wallet-topup-qr-create");
-            await page.WaitForTimeoutAsync(1000);
-            page.Dialog += page_Dialog3_EventHandler;
-            await page.ClickAsync("input[name=\"ion-input-1\"]");
-            await page.WaitForTimeoutAsync(2000);
-            await page.ClickAsync("button");
-            await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/wallet-topup-qr-confirm");
-            await page.WaitForTimeoutAsync(2000);
-            page.Dialog += page_Dialog2_EventHandler;
-            await page.WaitForTimeoutAsync(2000);
-            page.Dialog += page_Dialog5_EventHandler;
-            await page.ClickAsync("button");
-
-            var result = JsonSerializer.Deserialize<ResultDlg>(dialogMessage);
-            return result.status;
-
-            void page_Dialog3_EventHandler(object sender, IDialog dialog)
-            {
-                dialog.AcceptAsync("20.00");
-                page.Dialog -= page_Dialog3_EventHandler;
-            }
-            void page_Dialog2_EventHandler(object sender, IDialog dialog)
-            {
-                dialog.AcceptAsync();
-                page.Dialog -= page_Dialog2_EventHandler;
-            }
-            void page_Dialog5_EventHandler(object sender, IDialog dialog)
-            {
-                dialogMessage = dialog.Message;
-                dialog.DismissAsync();
-                page.Dialog -= page_Dialog2_EventHandler;
-            }
-
-        }
-
-        // ส่ง RTP เพื่อขอเติมเงินไปยังบัญชีธนาคารที่ผูกไว้ได้
-        public async Task<string> TopUpbanking()
-        {
-            var isInitSuccess = await ManaMcontent("https://localhost:44364/dev/visit?url=https://s.manal.ink/np/nfinanc-home");
-            if (!isInitSuccess)
-            {
-                return "Can not InitPage";
-            }
-            await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/financial-menu");
-            var dialogMessage = string.Empty;
-            await page.ClickAsync("text=เติมเงินMana WalletXTHB3,813.00ถอนเงิน >> img");
-            await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/wallet-topup");
-            await page.ClickAsync("text=0123456789123");
-            await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/wallet-topup-bankaccount");
-            await page.WaitForTimeoutAsync(2000);
-            page.Dialog += page_Dialog3_EventHandler;
-            await page.ClickAsync("input[name=\"ion-input-1\"]");
-            await page.WaitForTimeoutAsync(2000);
-            await page.ClickAsync("button");
-            await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/wallet-topup-bankaccount-confirm");
-            await page.WaitForTimeoutAsync(2000);
-            page.Dialog += page_Dialog2_EventHandler;
-            await page.WaitForTimeoutAsync(2000);
-            page.Dialog += page_Dialog5_EventHandler;
-            await page.ClickAsync("button");
-
-            var result = JsonSerializer.Deserialize<ResultDlg>(dialogMessage);
-            return result.status;
-
-            void page_Dialog3_EventHandler(object sender, IDialog dialog)
-            {
-                dialog.AcceptAsync("30.00");
-                page.Dialog -= page_Dialog3_EventHandler;
-            }
-
-            void page_Dialog2_EventHandler(object sender, IDialog dialog)
-            {
-                dialog.AcceptAsync();
-                page.Dialog -= page_Dialog2_EventHandler;
-            }
-
-            void page_Dialog5_EventHandler(object sender, IDialog dialog)
-            {
-                dialogMessage = dialog.Message;
-                dialog.DismissAsync();
-                page.Dialog -= page_Dialog2_EventHandler;
-            }
-        }
-
         // ถอนเงินออกจากร้าน Business เข้ากระเป๋าเงิน Mana ได้
         public async Task<string> withdrawBusinessShop()
         {
@@ -755,6 +596,167 @@ namespace manaTest
             void page_Dialog3_EventHandler(object sender, IDialog dialog)
             {
                 dialog.AcceptAsync("1.00");
+                page.Dialog -= page_Dialog3_EventHandler;
+            }
+
+            void page_Dialog2_EventHandler(object sender, IDialog dialog)
+            {
+                dialog.AcceptAsync();
+                page.Dialog -= page_Dialog2_EventHandler;
+            }
+
+            void page_Dialog5_EventHandler(object sender, IDialog dialog)
+            {
+                dialogMessage = dialog.Message;
+                dialog.DismissAsync();
+                page.Dialog -= page_Dialog2_EventHandler;
+            }
+        }
+
+        // ส่ง RTP เพื่อขอเติมเงินไปยังพร้อมเพย์ที่ผูกไว้ได้
+        public async Task<string> TopUpPPay()
+        {
+            var isInitSuccess = await ManaMcontent("https://localhost:44364/dev/visit?url=https://s.manal.ink/np/nfinanc-home");
+            if (!isInitSuccess)
+            {
+                return "Can not InitPage";
+            }
+            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/financial-menu");
+            var dialogMessage = string.Empty;
+            await page.ClickAsync("text=เติมเงินMana WalletXTHB3,597.00ถอนเงิน >> img");
+            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/wallet-topup");
+            await page.ClickAsync("text=0910167715");
+            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/wallet-topup-ppay");
+            await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog3_EventHandler;
+            await page.ClickAsync("input[name=\"ion-input-1\"]");
+            await page.WaitForTimeoutAsync(2000);
+            await page.ClickAsync("button");
+            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/wallet-topup-ppay-confirm");
+            await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog2_EventHandler;
+            await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog5_EventHandler;
+            await page.ClickAsync("button");
+            await page.WaitForTimeoutAsync(4000);
+
+            var result = JsonSerializer.Deserialize<ResultDlg>(dialogMessage);
+            return result.status;
+
+            void page_Dialog3_EventHandler(object sender, IDialog dialog)
+            {
+                dialog.AcceptAsync("25.00");
+                page.Dialog -= page_Dialog3_EventHandler;
+            }
+
+            void page_Dialog2_EventHandler(object sender, IDialog dialog)
+            {
+                dialog.AcceptAsync();
+                page.Dialog -= page_Dialog2_EventHandler;
+            }
+            void page_Dialog5_EventHandler(object sender, IDialog dialog)
+            {
+                dialogMessage = dialog.Message;
+                dialog.DismissAsync();
+                page.Dialog -= page_Dialog2_EventHandler;
+            }
+        }
+
+        // สร้าง QR เพื่อเติมเงินเข้ากระเป๋าเงิน Mana ได้
+        public async Task<string> TopUpCreateQR()
+        {
+            var isInitSuccess = await ManaMcontent("https://localhost:44364/dev/visit?url=https://s.manal.ink/np/nfinanc-home");
+            if (!isInitSuccess)
+            {
+                return "Can not InitPage";
+            }
+            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/financial-menu");
+            var dialogMessage = string.Empty;
+            await page.ClickAsync("text=เติมเงินMana WalletXTHB3,597.00ถอนเงิน >> img");
+            await page.WaitForTimeoutAsync(1000);
+            await page.GotoAsync("http://localhost:8100/#/wallet-topup");
+            await page.ClickAsync("text=สร้างคิวอาร์โค้ดเพื่อเติมเงิน");
+            await page.WaitForTimeoutAsync(1000);
+            await page.GotoAsync("http://localhost:8100/#/wallet-topup-qr-create");
+            await page.WaitForTimeoutAsync(1000);
+            page.Dialog += page_Dialog3_EventHandler;
+            await page.ClickAsync("input[name=\"ion-input-1\"]");
+            await page.WaitForTimeoutAsync(2000);
+            await page.ClickAsync("button");
+            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/wallet-topup-qr-confirm");
+            await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog2_EventHandler;
+            await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog5_EventHandler;
+            await page.ClickAsync("button");
+            await page.WaitForTimeoutAsync(4000);
+
+            var result = JsonSerializer.Deserialize<ResultDlg>(dialogMessage);
+            return result.status;
+
+            void page_Dialog3_EventHandler(object sender, IDialog dialog)
+            {
+                dialog.AcceptAsync("20.00");
+                page.Dialog -= page_Dialog3_EventHandler;
+            }
+            void page_Dialog2_EventHandler(object sender, IDialog dialog)
+            {
+                dialog.AcceptAsync();
+                page.Dialog -= page_Dialog2_EventHandler;
+            }
+            void page_Dialog5_EventHandler(object sender, IDialog dialog)
+            {
+                dialogMessage = dialog.Message;
+                dialog.DismissAsync();
+                page.Dialog -= page_Dialog2_EventHandler;
+            }
+
+        }
+
+        // ส่ง RTP เพื่อขอเติมเงินไปยังบัญชีธนาคารที่ผูกไว้ได้
+        public async Task<string> TopUpbanking()
+        {
+            var isInitSuccess = await ManaMcontent("https://localhost:44364/dev/visit?url=https://s.manal.ink/np/nfinanc-home");
+            if (!isInitSuccess)
+            {
+                return "Can not InitPage";
+            }
+            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/financial-menu");
+            var dialogMessage = string.Empty;
+            await page.WaitForTimeoutAsync(2000);
+            await page.ClickAsync("text=เติมเงินMana WalletXTHB3,597.00ถอนเงิน >> img");
+            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/wallet-topup");
+            await page.ClickAsync("text=0123456789123");
+            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/wallet-topup-bankaccount");
+            await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog3_EventHandler;
+            await page.ClickAsync("input[name=\"ion-input-1\"]");
+            await page.WaitForTimeoutAsync(2000);
+            await page.ClickAsync("button");
+            await page.WaitForTimeoutAsync(2000);
+            await page.GotoAsync("http://localhost:8100/#/wallet-topup-bankaccount-confirm");
+            await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog2_EventHandler;
+            await page.WaitForTimeoutAsync(2000);
+            page.Dialog += page_Dialog5_EventHandler;
+            await page.ClickAsync("button");
+            await page.WaitForTimeoutAsync(4000);
+
+            var result = JsonSerializer.Deserialize<ResultDlg>(dialogMessage);
+            return result.status;
+
+            void page_Dialog3_EventHandler(object sender, IDialog dialog)
+            {
+                dialog.AcceptAsync("30.00");
                 page.Dialog -= page_Dialog3_EventHandler;
             }
 
@@ -846,7 +848,7 @@ namespace manaTest
             //await page.FillAsync("input[name=\"ion-input-3\"]", "ME1213211235");
             //await page.ClickAsync("text=ระบุที่อยู่ตามบัตร ปชช.");
             await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/kyc-add-address");   
+            await page.GotoAsync("http://localhost:8100/#/kyc-add-address");
             await page.WaitForTimeoutAsync(2000);
             await page.ClickAsync("input[name=\"ion-input-4\"]");
             await page.FillAsync("input[name=\"ion-input-4\"]", "9/1");
