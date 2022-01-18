@@ -303,7 +303,8 @@ namespace manaTest
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/financial-menu");
             await page.WaitForTimeoutAsync(2000);
-            await page.ClickAsync("text=เติมเงินMana WalletXTHB3,813.00ถอนเงิน >> :nth-match(img, 3)");
+            //await page.ClickAsync("text=เติมเงินMana WalletXTHB3,813.00ถอนเงิน >> :nth-match(img, 3)");
+            await page.ClickAsync("img#bb.icon");
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/wallet-withdraw");
             page.Dialog += page_Dialog1_EventHandler;
@@ -332,7 +333,8 @@ namespace manaTest
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/financial-menu");
             await page.WaitForTimeoutAsync(2000);
-            await page.ClickAsync("text=เติมเงินMana WalletXTHB3,813.00ถอนเงิน >> :nth-match(img, 3)");
+            //await page.ClickAsync("text=เติมเงินMana WalletXTHB3,813.00ถอนเงิน >> :nth-match(img, 3)");
+            await page.ClickAsync("img#bb.icon");
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/wallet-withdraw");
             page.Dialog += page_Dialog2_EventHandler;
@@ -362,7 +364,8 @@ namespace manaTest
             await page.GotoAsync("http://localhost:8100/#/financial-menu");
             var dialogMessage = string.Empty;
             await page.WaitForTimeoutAsync(2000);
-            await page.ClickAsync("text=เติมเงินMana WalletXTHB3,597.00ถอนเงิน >> img");
+            //await page.ClickAsync("text=เติมเงินMana WalletXTHB3,597.00ถอนเงิน >> img");
+            await page.ClickAsync("img#bb.icon");
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/wallet-withdraw");
             await page.WaitForTimeoutAsync(2000);
@@ -421,7 +424,8 @@ namespace manaTest
             await page.GotoAsync("http://localhost:8100/#/financial-menu");
             var dialogMessage = string.Empty;
             await page.WaitForTimeoutAsync(2000);
-            await page.ClickAsync("text=เติมเงินMana WalletXTHB3,599.00ถอนเงิน >> img");
+            //await page.ClickAsync("text=เติมเงินMana WalletXTHB3,599.00ถอนเงิน >> img");
+            await page.ClickAsync("img#bb.icon");
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/wallet-withdraw");
             await page.WaitForTimeoutAsync(1000);
@@ -478,7 +482,8 @@ namespace manaTest
             await page.GotoAsync("http://localhost:8100/#/financial-menu");
             var dialogMessage = string.Empty;
             await page.WaitForTimeoutAsync(2000);
-            await page.ClickAsync("text=เติมเงินMana WalletXTHB3,813.00ถอนเงิน >> img");
+            //await page.ClickAsync("text=เติมเงินMana WalletXTHB3,813.00ถอนเงิน >> img");
+            await page.ClickAsync("img#bb.icon");
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/wallet-withdraw");
             await page.WaitForTimeoutAsync(1000);
@@ -528,7 +533,8 @@ namespace manaTest
             await page.GotoAsync("http://localhost:8100/#/financial-menu");
             var dialogMessage = string.Empty;
             await page.WaitForTimeoutAsync(2000);
-            await page.ClickAsync("text=เติมเงินMana WalletXTHB3,813.00ถอนเงิน >> img");
+            //await page.ClickAsync("text=เติมเงินMana WalletXTHB3,813.00ถอนเงิน >> img");
+            await page.ClickAsync("img#bb.icon");
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/wallet-withdraw");
             await page.WaitForTimeoutAsync(1000);
@@ -624,7 +630,8 @@ namespace manaTest
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/financial-menu");
             var dialogMessage = string.Empty;
-            await page.ClickAsync("text=เติมเงินMana WalletXTHB3,597.00ถอนเงิน >> img");
+            //await page.ClickAsync("text=เติมเงินMana WalletXTHB3,597.00ถอนเงิน >> img");
+            await page.ClickAsync("img#aa.icon.ion-text-center");
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/wallet-topup");
             await page.ClickAsync("text=0910167715");
@@ -677,7 +684,8 @@ namespace manaTest
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/financial-menu");
             var dialogMessage = string.Empty;
-            await page.ClickAsync("text=เติมเงินMana WalletXTHB3,597.00ถอนเงิน >> img");
+            //await page.ClickAsync("text=เติมเงินMana WalletXTHB3,597.00ถอนเงิน >> img");
+            await page.ClickAsync("img#aa.icon.ion-text-center");
             await page.WaitForTimeoutAsync(1000);
             await page.GotoAsync("http://localhost:8100/#/wallet-topup");
             await page.ClickAsync("text=สร้างคิวอาร์โค้ดเพื่อเติมเงิน");
@@ -731,7 +739,8 @@ namespace manaTest
             await page.GotoAsync("http://localhost:8100/#/financial-menu");
             var dialogMessage = string.Empty;
             await page.WaitForTimeoutAsync(2000);
-            await page.ClickAsync("text=เติมเงินMana WalletXTHB3,597.00ถอนเงิน >> img");
+            //await page.ClickAsync("text=เติมเงินMana WalletXTHB3,597.00ถอนเงิน >> img");
+            await page.ClickAsync("img.icon.ion-text-center");
             await page.WaitForTimeoutAsync(2000);
             await page.GotoAsync("http://localhost:8100/#/wallet-topup");
             await page.ClickAsync("text=0123456789123");
