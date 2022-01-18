@@ -1,4 +1,5 @@
 ﻿using mana_Test.Models;
+using manaTest.Helpers;
 using Microsoft.Playwright;
 using System;
 using System.Text.Json;
@@ -9,27 +10,28 @@ namespace manaTest
     public class SetUpProject
     {
         private static IPage page;
-        private static IBrowser browser;
-        private static IPlaywright playwright;
+        //private static IBrowser browser;
+        //private static IPlaywright playwright;
 
-        public async Task<IBrowser> BeforeScenario()
-        {
-            playwright ??= await Playwright.CreateAsync();
-            if (null == browser)
-            {
-                browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
-                {
-                    Headless = false,
-                    SlowMo = 1000,
-                });
-            }
-            return browser;
-        }
+        //public async Task<IBrowser> BeforeScenario()
+        //{
+        //    playwright ??= await Playwright.CreateAsync();
+        //    if (null == browser)
+        //    {
+        //        browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
+        //        {
+        //            Headless = false,
+        //            SlowMo = 1000,
+        //        });
+        //    }
+        //    return browser;
+        //}
 
         public async Task<bool> ManaMcontent(string url)
         {
-            var browser = await BeforeScenario();
-            page = await browser.NewPageAsync();
+            //var browser = await BeforeScenario();
+            //page = await browser.NewPageAsync();
+            page = await PageFactory.CreatePage().DoLogin();
             var res = await page.GotoAsync(url);
             await page.WaitForTimeoutAsync(2000);
             if (!res.Ok)
