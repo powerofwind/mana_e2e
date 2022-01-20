@@ -120,70 +120,7 @@ namespace mana_XUnit
             var res = await sut.SendRequestKYCBasic();
             res.Should().Be("Success");
         }
-
-        [Fact(DisplayName = "User อนุมัติการเข้าถึงข้อมูลได้")]
-        public async Task UserApproveInfo()
-        {
-            var sut = new SetUpProject();
-            var res = await sut.UserApproveInfo();
-            res.Should().Be("Success");
-        }
-
-        [Fact(DisplayName = "User ปฏิเสธการเข้าถึงข้อมูลได้")]
-        public async Task UserRejectInfo()
-        {
-            var sut = new SetUpProject();
-            var res = await sut.UserRejectInfo();
-            res.Should().Be("Success");
-        }
-
-        [Fact(DisplayName = "Manager อนุมัติการเข้าถึงข้อมูลได้")]
-        public async Task ManagerApproveInfo()
-        {
-            var sut = new SetUpProject();
-            var res = await sut.ManagerApproveInfo();
-            res.Should().Be("Success");
-        }
-
-        [Fact(DisplayName = "Manager ปฏิเสธการเข้าถึงข้อมูลได้")]
-        public async Task ManagerRejectInfo()
-        {
-            var sut = new SetUpProject();
-            var res = await sut.ManagerRejectInfo();
-            res.Should().Be("Success");
-        }
-
-        [Fact(DisplayName = "Manager อนุมัติการระงับบัญชีได้")]
-        public async Task ManagerApproveSuspendAccount()
-        {
-            var sut = new SetUpProject();
-            var res = await sut.ManagerApproveSuspendAccount();
-            res.Should().Be("Success");
-        }
-
-        [Fact(DisplayName = "Manager ปฏิเสธการระงับบัญชีได้")]
-        public async Task ManagerRejectSuspendAccount()
-        {
-            var sut = new SetUpProject();
-            var res = await sut.ManagerRejectSuspendAccount();
-            res.Should().Be("Success");
-        }
-
-        [Fact(DisplayName = "Manager อนุมัติการยกเลิกการระงับบัญชีได้")]
-        public async Task ManagerApproveCancelSuspendAccount()
-        {
-            var sut = new SetUpProject();
-            var res = await sut.ManagerApproveCancelSuspendAccount();
-            res.Should().Be("Success");
-        }
-
-        [Fact(DisplayName = "Manager ปฏิเสธการยกเลิกการระงับบัญชีได้")]
-        public async Task ManagerRejectCancelSuspendAccount()
-        {
-            var sut = new SetUpProject();
-            var res = await sut.ManagerRejectCancelSuspendAccount();
-            res.Should().Be("Success");
-        }
+      
 
         [Fact(DisplayName = "ถอนเงินออกจากร้าน Business เข้ากระเป๋าเงิน Mana ได้")]
         public async Task withdrawBusinessShop()
