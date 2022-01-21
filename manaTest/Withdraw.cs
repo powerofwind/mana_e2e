@@ -311,6 +311,7 @@ namespace manaTest
             await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
             page.Dialog += page_Dialog5_EventHandler;
             await page.WaitForTimeoutAsync(2000);
+
             var result = JsonSerializer.Deserialize<ResultDlg>(dialogMessage);
 
             if (result.status == "Fail")

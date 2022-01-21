@@ -55,13 +55,6 @@ namespace mana_XUnit
         }
 
 
-        [Fact(DisplayName = "สร้างร้านสำหรับ Business ได้")]
-        public async Task CreateBusinessShop()
-        {
-            var sut = new SetUpProject();
-            var res = await sut.CreateBusinessShop();
-            res.Should().Be("Success");
-        }
 
         [Fact(DisplayName = "สร้างการผูกบัญชีธนาคารได้")]
         public async Task AddBankingAccount()
@@ -79,13 +72,7 @@ namespace mana_XUnit
             res.Should().Be("Success");
         }
 
-        [Fact(DisplayName = "สร้าง QR ร้าน Business ได้")]
-        public async Task CreatQRBusiness()
-        {
-            var sut = new SetUpProject();
-            var res = await sut.CreatQRBusiness();
-            res.Should().Be(true);
-        }
+       
 
 
         [Fact(DisplayName = "ส่ง RTP เพื่อขอเติมเงินไปยังพร้อมเพย์ที่ผูกไว้ได้")]
@@ -122,13 +109,7 @@ namespace mana_XUnit
         }
       
 
-        [Fact(DisplayName = "ถอนเงินออกจากร้าน Business เข้ากระเป๋าเงิน Mana ได้")]
-        public async Task withdrawBusinessShop()
-        {
-            var sut = new SetUpProject();
-            var res = await sut.withdrawBusinessShop();
-            res.Should().Be("Success");
-        }
+     
 
 
         //ส่งคำขอ KYC basic ได้(รอส่งข้อมูลข้ามหน้า)
