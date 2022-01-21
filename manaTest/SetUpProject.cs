@@ -439,176 +439,20 @@ namespace manaTest
 
         
 
-        // ส่ง RTP เพื่อขอเติมเงินไปยังพร้อมเพย์ที่ผูกไว้ได้
-        public async Task<string> TopUpPPay()
-        {
-            var isInitSuccess = await ManaMcontent("https://localhost:44364/dev/visit?url=https://s.manal.ink/np/nfinanc-home");
-            if (!isInitSuccess)
-            {
-                return "Can not InitPage";
-            }
-            await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/financial-menu");
-            var dialogMessage = string.Empty;
-            await page.ClickAsync("ion-row:nth-child(2) ion-col:nth-child(1) img");
-            await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/wallet-topup");
-            await page.ClickAsync("text=0910167715");
-            await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/wallet-topup-ppay");
-            await page.WaitForTimeoutAsync(2000);
-            page.Dialog += page_Dialog3_EventHandler;
-            await page.ClickAsync("input[name=\"ion-input-1\"]");
-            await page.WaitForTimeoutAsync(2000);
-            await page.ClickAsync("button");
-            await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/wallet-topup-ppay-confirm");
-            await page.WaitForTimeoutAsync(2000);
-            page.Dialog += page_Dialog2_EventHandler;
-            await page.WaitForTimeoutAsync(2000);
-            page.Dialog += page_Dialog5_EventHandler;
-            await page.ClickAsync("button");
-            await page.WaitForTimeoutAsync(4000);
-
-            var result = JsonSerializer.Deserialize<ResultDlg>(dialogMessage);
-            return result.status;
-
-            void page_Dialog3_EventHandler(object sender, IDialog dialog)
-            {
-                dialog.AcceptAsync("25.00");
-                page.Dialog -= page_Dialog3_EventHandler;
-            }
-
-            void page_Dialog2_EventHandler(object sender, IDialog dialog)
-            {
-                dialog.AcceptAsync();
-                page.Dialog -= page_Dialog2_EventHandler;
-            }
-            void page_Dialog5_EventHandler(object sender, IDialog dialog)
-            {
-                dialogMessage = dialog.Message;
-                dialog.DismissAsync();
-                page.Dialog -= page_Dialog2_EventHandler;
-            }
-        }
-
-        // สร้าง QR เพื่อเติมเงินเข้ากระเป๋าเงิน Mana ได้
-        public async Task<string> TopUpCreateQR()
-        {
-            var isInitSuccess = await ManaMcontent("https://localhost:44364/dev/visit?url=https://s.manal.ink/np/nfinanc-home");
-            if (!isInitSuccess)
-            {
-                return "Can not InitPage";
-            }
-            await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/financial-menu");
-            var dialogMessage = string.Empty;
-            await page.ClickAsync("ion-row:nth-child(2) ion-col:nth-child(1) img");
-            await page.WaitForTimeoutAsync(1000);
-            await page.GotoAsync("http://localhost:8100/#/wallet-topup");
-            await page.ClickAsync("text=สร้างคิวอาร์โค้ดเพื่อเติมเงิน");
-            await page.WaitForTimeoutAsync(1000);
-            await page.GotoAsync("http://localhost:8100/#/wallet-topup-qr-create");
-            await page.WaitForTimeoutAsync(1000);
-            page.Dialog += page_Dialog3_EventHandler;
-            await page.ClickAsync("input[name=\"ion-input-1\"]");
-            await page.WaitForTimeoutAsync(2000);
-            await page.ClickAsync("button");
-            await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/wallet-topup-qr-confirm");
-            await page.WaitForTimeoutAsync(2000);
-            page.Dialog += page_Dialog2_EventHandler;
-            await page.WaitForTimeoutAsync(2000);
-            page.Dialog += page_Dialog5_EventHandler;
-            await page.ClickAsync("button");
-            await page.WaitForTimeoutAsync(4000);
-
-            var result = JsonSerializer.Deserialize<ResultDlg>(dialogMessage);
-            return result.status;
-
-            void page_Dialog3_EventHandler(object sender, IDialog dialog)
-            {
-                dialog.AcceptAsync("20.00");
-                page.Dialog -= page_Dialog3_EventHandler;
-            }
-            void page_Dialog2_EventHandler(object sender, IDialog dialog)
-            {
-                dialog.AcceptAsync();
-                page.Dialog -= page_Dialog2_EventHandler;
-            }
-            void page_Dialog5_EventHandler(object sender, IDialog dialog)
-            {
-                dialogMessage = dialog.Message;
-                dialog.DismissAsync();
-                page.Dialog -= page_Dialog2_EventHandler;
-            }
-
-        }
-
-        // ส่ง RTP เพื่อขอเติมเงินไปยังบัญชีธนาคารที่ผูกไว้ได้
-        public async Task<string> TopUpbanking()
-        {
-            var isInitSuccess = await ManaMcontent("https://localhost:44364/dev/visit?url=https://s.manal.ink/np/nfinanc-home");
-            if (!isInitSuccess)
-            {
-                return "Can not InitPage";
-            }
-            await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/financial-menu");
-            var dialogMessage = string.Empty;
-            await page.WaitForTimeoutAsync(2000);
-            await page.ClickAsync("ion-row:nth-child(2) ion-col:nth-child(1) img");
-            await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/wallet-topup");
-            await page.ClickAsync("text=0123456789123");
-            await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/wallet-topup-bankaccount");
-            await page.WaitForTimeoutAsync(2000);
-            page.Dialog += page_Dialog3_EventHandler;
-            await page.ClickAsync("input[name=\"ion-input-1\"]");
-            await page.WaitForTimeoutAsync(2000);
-            await page.ClickAsync("button");
-            await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/wallet-topup-bankaccount-confirm");
-            await page.WaitForTimeoutAsync(2000);
-            page.Dialog += page_Dialog2_EventHandler;
-            await page.WaitForTimeoutAsync(2000);
-            page.Dialog += page_Dialog5_EventHandler;
-            await page.ClickAsync("button");
-            await page.WaitForTimeoutAsync(4000);
-
-            var result = JsonSerializer.Deserialize<ResultDlg>(dialogMessage);
-            return result.status;
-
-            void page_Dialog3_EventHandler(object sender, IDialog dialog)
-            {
-                dialog.AcceptAsync("30.00");
-                page.Dialog -= page_Dialog3_EventHandler;
-            }
-
-            void page_Dialog2_EventHandler(object sender, IDialog dialog)
-            {
-                dialog.AcceptAsync();
-                page.Dialog -= page_Dialog2_EventHandler;
-            }
-
-            void page_Dialog5_EventHandler(object sender, IDialog dialog)
-            {
-                dialogMessage = dialog.Message;
-                dialog.DismissAsync();
-                page.Dialog -= page_Dialog2_EventHandler;
-            }
-        }
+        
 
         // ส่งคำขอ KYC basic ได้ ยังไม่เสร็จ
         public async Task<string> SendRequestKYCBasic()
         {
-            var isInitSuccess = await ManaMcontent("https://localhost:44364/dev/visit?url=https://s.manal.ink/kyc/basic/visit/nkycbsc-180056522489857");
+            var page = await PageFactory.CreatePage().DoLogin();
+           await page.GotoAsync("https://localhost:44364/dev/visit?url=https://s.manal.ink/kyc/basic/visit/nkycbsc-180058392100865");
 
-            if (!isInitSuccess)
-            {
-                return "Can not InitPage";
-            }
+            //var isInitSuccess = await ManaMcontent("https://localhost:44364/dev/visit?url=https://s.manal.ink/kyc/basic/visit/nkycbsc-180056522489857");
+
+            //if (!isInitSuccess)
+            //{
+            //    return "Can not InitPage";
+            //}
 
             var dialogMessage = string.Empty;
             await page.WaitForTimeoutAsync(2000);
@@ -672,24 +516,30 @@ namespace manaTest
             //await page.FillAsync("input[name=\"ion-input-2\"]", "1349900417320");
             //await page.ClickAsync("input[name=\"ion-input-3\"]");
             //await page.FillAsync("input[name=\"ion-input-3\"]", "ME1213211235");
-            //await page.ClickAsync("text=ระบุที่อยู่ตามบัตร ปชช.");
-            await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/kyc-add-address");
-            await page.WaitForTimeoutAsync(2000);
-            await page.ClickAsync("input[name=\"ion-input-4\"]");
-            await page.FillAsync("input[name=\"ion-input-4\"]", "9/1");
-            await page.ClickAsync("input[name=\"ion-input-5\"]");
-            await page.FillAsync("input[name=\"ion-input-5\"]", "ในเมือง");
-            await page.ClickAsync("input[name=\"ion-input-6\"]");
-            await page.FillAsync("input[name=\"ion-input-6\"]", "เมือง");
-            await page.ClickAsync("input[name=\"ion-input-7\"]");
-            await page.FillAsync("input[name=\"ion-input-7\"]", "อุบลราชธานี");
-            await page.ClickAsync("input[name=\"ion-input-8\"]");
-            await page.FillAsync("input[name=\"ion-input-8\"]", "34000");
-            await page.ClickAsync("input[name=\"ion-input-9\"]");
-            await page.FillAsync("input[name=\"ion-input-9\"]", "0632130558");
-            await page.ClickAsync("button");
-            await page.GotoAsync("http://localhost:8100/#/kyc-basic-create");
+            await page.ClickAsync("text=ระบุที่อยู่ตามบัตร ปชช.");
+            var page1 = await PageFactory.CreatePage().DoLogin();
+            await page1.GotoAsync("http://localhost:8100/#/kyc-add-address");
+            await page1.WaitForTimeoutAsync(2000);
+            await page1.ClickAsync("input[name=\"ion-input-0\"]");
+            await page1.FillAsync("input[name=\"ion-input-0\"]", "9/1");
+            await page1.ClickAsync("input[name=\"ion-input-1\"]");
+            await page1.FillAsync("input[name=\"ion-input-1\"]", "ในเมือง");
+            await page1.ClickAsync("input[name=\"ion-input-2\"]");
+            await page1.FillAsync("input[name=\"ion-input-2\"]", "เมือง");
+            await page1.ClickAsync("input[name=\"ion-input-3\"]");
+            await page1.FillAsync("input[name=\"ion-input-3\"]", "อุบลราชธานี");
+            await page1.ClickAsync("input[name=\"ion-input-4\"]");
+            await page1.FillAsync("input[name=\"ion-input-4\"]", "34000");
+            await page1.ClickAsync("input[name=\"ion-input-5\"]");
+            await page1.FillAsync("input[name=\"ion-input-5\"]", "0632130558");
+            await page1.ClickAsync("button");
+
+
+            await page.ClickAsync("input[name=\"ion-input-2\"]");
+            await page.FillAsync("input[name=\"ion-input-2\"]", "1349900417320");
+
+
+            //await page.GotoAsync("http://localhost:8100/#/kyc-basic-create");
 
             return "Success";
         }

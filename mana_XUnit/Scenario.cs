@@ -48,34 +48,7 @@ namespace mana_XUnit
             res.Should().Be("Success");
         }
 
-       
-
-
-        [Fact(DisplayName = "ส่ง RTP เพื่อขอเติมเงินไปยังพร้อมเพย์ที่ผูกไว้ได้")]
-        public async Task TopUpPPay()
-        {
-            var sut = new SetUpProject();
-            var res = await sut.TopUpPPay();
-            res.Should().Be("Success");
-        }
-
-        [Fact(DisplayName = "สร้าง QR เพื่อเติมเงินเข้ากระเป๋าเงิน Mana ได้")]
-        public async Task TopUpCreateQR()
-        {
-            var sut = new SetUpProject();
-            var res = await sut.TopUpCreateQR();
-            res.Should().Be("Success");
-        }
-
-        [Fact(DisplayName = "ส่ง RTP เพื่อขอเติมเงินไปยังบัญชีธนาคารที่ผูกไว้ได้")]
-        public async Task TopUpbanking()
-        {
-            var sut = new SetUpProject();
-            var res = await sut.TopUpbanking();
-            res.Should().Be("Success");
-        }
-
-
+      
         [Fact(DisplayName = "ส่งคำขอ KYC basic ได้")]
         public async Task SendRequestKYCBasic()
         {
