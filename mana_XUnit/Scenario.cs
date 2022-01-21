@@ -38,31 +38,7 @@ namespace mana_XUnit
         //    res.Should().Be("Your name is: 123");
         //}
 
-        [Fact(DisplayName = "สร้างการผูกบัญชีพร้อมเพย์แบบหมายเลขบัตรประชาชนได้")]
-        public async Task AddPPayAccountByPID()
-        {
-            var sut = new SetUpProject();
-            var res = await sut.AddPPayAccountByPID();
-            res.Should().Be(true);
-        }
-
-        [Fact(DisplayName = "สร้างการผูกบัญชีพร้อมเพย์แบบหมายเลขโทรศัพท์ได้")]
-        public async Task AddPPayAccountByPhoneNumber()
-        {
-            var sut = new SetUpProject();
-            var res = await sut.AddPPayAccountByPhoneNumber();
-            res.Should().Be(true);
-        }
-
-
-
-        [Fact(DisplayName = "สร้างการผูกบัญชีธนาคารได้")]
-        public async Task AddBankingAccount()
-        {
-            var sut = new SetUpProject();
-            var res = await sut.AddBankingAccount();
-            res.Should().Be(true);
-        }
+      
 
         [Fact(DisplayName = "แจ้งปัญหาไปยังทีม Support ได้")]
         public async Task ReportIssue()
