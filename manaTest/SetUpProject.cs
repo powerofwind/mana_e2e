@@ -125,11 +125,12 @@ namespace manaTest
             var page = await PageFactory.CreatePage().DoLogin();
             await page.GotoAsync("https://localhost:44364/dev/visit?url=https://s.manal.ink/kyc/basic/visit/nkycbsc-180056522489857");
             var dialogMessage = string.Empty;
-            await page.WaitForTimeoutAsync(2000);
-            await page.GotoAsync("http://localhost:8100/#/kyc-agreement");
-            await page.ClickAsync("button");
-            await page.GotoAsync("http://localhost:8100/#/kyc-basic-create");
             await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
+            //await page.GotoAsync("http://localhost:8100/#/kyc-agreement");
+            //await page.ClickAsync("button");
+            await page.GotoAsync("https://localhost:44364/dev/visit?url=https://s.manal.ink/kyc/basic/create/nkycbsc-180056522489857 ");
+            await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
+            await page.GotoAsync("http://localhost:8100/#/kyc-basic-create");
             await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
             await page.ClickAsync("input[name=\"ion-input-0\"]");
             await page.FillAsync("input[name=\"ion-input-0\"]", "เตชะพงศ์");
@@ -216,6 +217,7 @@ namespace manaTest
             await page2.FillAsync("input[name=\"ion-input-1\"]", "0910167715");
             await page2.ClickAsync("button");
             await page.ClickAsync("text=OK >> button");
+            await page2.WaitForLoadStateAsync(LoadState.NetworkIdle);
             await page2.ClickAsync("button");
 
             const string CreateKYCApi = "https://localhost:44364/mcontent/Submit/";
@@ -228,14 +230,7 @@ namespace manaTest
             // app mana เข้าหน้านี้ยังไมได้
             await page.GotoAsync("http://localhost:8100/#/kyc-basic-confirm");
             await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
-            await page.PauseAsync();
             await page.ClickAsync("button");
-
-
-
-
-
-
             return true;
         }
 
