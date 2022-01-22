@@ -146,20 +146,13 @@ namespace manaTest
 
             await page.GotoAsync("http://localhost:8100/#/merchant-withdraw-confirm");
             await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
-
-            const string ComfirmWithdrawBusinessApi = "https://localhost:44364/mcontent/CallTrigger/%7B%22mcid%22:%22merchant-withdraw-confirm%22,%22triggerName%22:%22Button1%22%7D";
-            var ComfirmWithdrawBusinessApiResponse = await page.RunAndWaitForResponseAsync(() => page.ClickAsync("button"), ComfirmWithdrawBusinessApi);
-            if (!ComfirmWithdrawBusinessApiResponse.Ok)
-            {
-                return false;
-            }
-
-            await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
+            await page.WaitForTimeoutAsync(2000);
             page.Dialog += page_Dialog2_EventHandler;
             await page.WaitForTimeoutAsync(2000);
             page.Dialog += page_Dialog5_EventHandler;
-            await page.WaitForTimeoutAsync(6000);
+            await page.ClickAsync("button");
 
+            await page.WaitForTimeoutAsync(6000);
             var result = JsonSerializer.Deserialize<ResultDlg>(dialogMessage);
             if (result.status == "Success")
             {

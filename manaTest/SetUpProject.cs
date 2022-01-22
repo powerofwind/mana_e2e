@@ -137,66 +137,67 @@ namespace manaTest
             await page.ClickAsync("input[name=\"ion-input-1\"]");
             await page.FillAsync("input[name=\"ion-input-1\"]", "ขำคม");
             await page.ClickAsync("input[name=\"ion-input-2\"]");
-            await page.FillAsync("input[name=\"ion-input-2\"]", "1349900417320");
+            await page.FillAsync("input[name=\"ion-input-2\"]", "1349900417203");
             await page.ClickAsync("button");
-            //// วันเกิด
-            ////await page.ClickAsync("text=17");
-            ////await page.ClickAsync("text=15");
-            ////await page.ClickAsync("text=13");
-            ////await page.ClickAsync("text=11");
-            ////await page.ClickAsync("text=09");
-            ////await page.ClickAsync("text=07");
-            ////await page.ClickAsync("text=05");
-            ////await page.ClickAsync("text=03");
-            ////await page.ClickAsync("text=02");
-            //////เดือนเกิด
-            ////await page.ClickAsync(":nth-match(ion-picker-column:has-text(\"010203040506070809101112\"), 2)");
-            ////await page.ClickAsync(":nth-match(:text(\"03\"), 2)");
-            ////await page.ClickAsync(":nth-match(:text(\"04\"), 2)");
-            ////await page.ClickAsync(":nth-match(:text(\"05\"), 2)");
-            ////await page.ClickAsync(":nth-match(:text(\"06\"), 2)");
-            //////ปีเกิด
-            ////await page.ClickAsync("text=2020");
-            ////await page.ClickAsync("text=2019");
-            ////await page.ClickAsync("text=2018");
-            ////await page.ClickAsync("text=2017");
-            ////await page.ClickAsync("text=2016");
-            ////await page.ClickAsync("text=2015");
-            ////await page.ClickAsync("text=2014");
-            ////await page.ClickAsync("text=2013");
-            ////await page.ClickAsync("text=2012");
-            ////await page.ClickAsync("text=2011");
-            ////await page.ClickAsync("text=2010");
-            ////await page.ClickAsync("text=2009");
-            ////await page.ClickAsync("text=2008");
-            ////await page.ClickAsync("text=2007");
-            ////await page.ClickAsync("text=2006");
-            ////await page.ClickAsync("text=2005");
-            ////await page.ClickAsync("text=2004");
-            ////await page.ClickAsync("text=2003");
-            ////await page.ClickAsync("text=2002");
-            ////await page.ClickAsync("text=2001");
-            ////await page.ClickAsync("text=2000");
-            ////await page.ClickAsync("text=1999");
-            ////await page.ClickAsync("text=1998");
-            ////await page.ClickAsync("text=1997");
-            ////await page.ClickAsync("text=1996");
-            ////await page.ClickAsync("text=1995");
-            ////await page.ClickAsync("text=1994");
-            ////await page.ClickAsync("text=1993");
-            ////await page.ClickAsync("text=1992");
-            ////await page.ClickAsync("text=1991");
+            //////// วันเกิด
+            //await page.ClickAsync("text=22");
+            //await page.ClickAsync("text=20");
+            //await page.ClickAsync("text=18");
+            //await page.ClickAsync("text=17");
+            //await page.ClickAsync("text=15");
+            //await page.ClickAsync("text=13");
+            //await page.ClickAsync("text=11");
+            //await page.ClickAsync("text=09");
+            //await page.ClickAsync("text=07");
+            //await page.ClickAsync("text=05");
+            //await page.ClickAsync("text=03");
+            //await page.ClickAsync("text=02");
+            //////////เดือนเกิด
+            //await page.ClickAsync(":nth-match(ion-picker-column:has-text(\"010203040506070809101112\"), 2)");
+            //await page.ClickAsync(":nth-match(:text(\"01\"), 2)");
+            //await page.ClickAsync(":nth-match(:text(\"03\"), 2)");
+            //await page.ClickAsync(":nth-match(:text(\"05\"), 2)");
+            //await page.ClickAsync(":nth-match(:text(\"06\"), 2)");
+            //////////ปีเกิด
+            //await page.ClickAsync("text=2020");
+            //await page.ClickAsync("text=2019");
+            //await page.ClickAsync("text=2018");
+            //await page.ClickAsync("text=2017");
+            //await page.ClickAsync("text=2016");
+            //await page.ClickAsync("text=2015");
+            //await page.ClickAsync("text=2014");
+            //await page.ClickAsync("text=2013");
+            //await page.ClickAsync("text=2012");
+            //await page.ClickAsync("text=2011");
+            //await page.ClickAsync("text=2010");
+            //await page.ClickAsync("text=2009");
+            //await page.ClickAsync("text=2008");
+            //await page.ClickAsync("text=2007");
+            //await page.ClickAsync("text=2006");
+            //await page.ClickAsync("text=2005");
+            //await page.ClickAsync("text=2004");
+            //await page.ClickAsync("text=2003");
+            //await page.ClickAsync("text=2002");
+            //await page.ClickAsync("text=2001");
+            //await page.ClickAsync("text=2000");
+            //await page.ClickAsync("text=1999");
+            //await page.ClickAsync("text=1998");
+            //await page.ClickAsync("text=1997");
+            //await page.ClickAsync("text=1996");
+            //await page.ClickAsync("text=1995");
+            //await page.ClickAsync("text=1994");
+            //await page.ClickAsync("text=1993");
+            //await page.ClickAsync("text=1992");
+            //await page.ClickAsync("text=1991");
             await page.ClickAsync("text=Done");
-            await page.ClickAsync("input[name=\"ion-input-2\"]");
-            await page.FillAsync("input[name=\"ion-input-2\"]", "1349900417320");
             await page.ClickAsync("input[name=\"ion-input-3\"]");
-            await page.FillAsync("input[name=\"ion-input-3\"]", "ME1213211235");       
+            await page.FillAsync("input[name=\"ion-input-3\"]", "ME1123387863");
             await page.ClickAsync("text=ระบุที่อยู่ตามบัตร ปชช.");
             var page1 = await PageFactory.CreatePage().DoLogin();
             await page1.GotoAsync("http://localhost:8100/#/kyc-add-address");
             await page1.WaitForLoadStateAsync(LoadState.NetworkIdle);
             await page1.ClickAsync("input[name=\"ion-input-0\"]");
-            await page1.FillAsync("input[name=\"ion-input-0\"]", "9/1");
+            await page1.FillAsync("input[name=\"ion-input-0\"]", "8/2");
             await page1.ClickAsync("input[name=\"ion-input-1\"]");
             await page1.FillAsync("input[name=\"ion-input-1\"]", "ในเมือง");
             await page1.ClickAsync("input[name=\"ion-input-2\"]");
@@ -230,8 +231,14 @@ namespace manaTest
             // app mana เข้าหน้านี้ยังไมได้
             await page.GotoAsync("http://localhost:8100/#/kyc-basic-confirm");
             await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
-            await page.ClickAsync("button");
-            return true;
+
+            const string ComfirmCreateKYCApi = "https://localhost:44364/mcontent/CallTrigger/%7B%22mcid%22:%22kyc-basic-confirm%22,%22triggerName%22:%22Button1%22%7D";
+            var ComfirmCreateKYCApiResponse = await page.RunAndWaitForResponseAsync(() => page.ClickAsync("button"), ComfirmCreateKYCApi);
+            if (ComfirmCreateKYCApiResponse.Ok)
+            {
+                return true;
+            }
+            return false;
         }
 
 

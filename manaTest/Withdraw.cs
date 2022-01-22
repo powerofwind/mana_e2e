@@ -129,18 +129,10 @@ namespace manaTest
 
             await page.GotoAsync("http://localhost:8100/#/wallet-withdraw-bankaccount-confirm");
             await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
-
-            const string WithdrawAmountComfirmPPayApi = "https://localhost:44364/mcontent/CallTrigger/%7B%22mcid%22:%22wallet-withdraw-bankaccount-confirm%22,%22triggerName%22:%22Button1%22%7D";
-            var AmountSubmitComfirmResponse = await page.RunAndWaitForResponseAsync(() => page.ClickAsync("button"), WithdrawAmountComfirmPPayApi);
-            if (!AmountSubmitComfirmResponse.Ok)
-            {
-                return false;
-            }
-
-            await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
             page.Dialog += page_Dialog2_EventHandler;
             await page.WaitForTimeoutAsync(2000);
             page.Dialog += page_Dialog5_EventHandler;
+            await page.ClickAsync("button");
             await page.WaitForTimeoutAsync(6000);
 
             var result = JsonSerializer.Deserialize<ResultDlg>(dialogMessage);
@@ -216,18 +208,10 @@ namespace manaTest
 
             await page.GotoAsync("http://localhost:8100/#/wallet-withdraw-bankaccount-confirm");
             await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
-
-            const string WithdrawAmountComfirmBankingApi = "https://localhost:44364/mcontent/CallTrigger/%7B%22mcid%22:%22wallet-withdraw-bankaccount-confirm%22,%22triggerName%22:%22Button1%22%7D";
-            var AmountSubmitComfirmResponse = await page.RunAndWaitForResponseAsync(() => page.ClickAsync("button"), WithdrawAmountComfirmBankingApi);
-            if (!AmountSubmitComfirmResponse.Ok)
-            {
-                return false;
-            }
-
-            await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
             page.Dialog += page_Dialog2_EventHandler;
             await page.WaitForTimeoutAsync(2000);
             page.Dialog += page_Dialog5_EventHandler;
+            await page.ClickAsync("button");
             await page.WaitForTimeoutAsync(6000);
 
             var result = JsonSerializer.Deserialize<ResultDlg>(dialogMessage);
