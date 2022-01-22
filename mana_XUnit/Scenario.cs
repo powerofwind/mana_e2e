@@ -45,7 +45,7 @@ namespace mana_XUnit
         {
             var sut = new SetUpProject();
             var res = await sut.ReportIssue();
-            res.Should().Be("Success");
+            res.Should().Be(true);
         }
 
       
@@ -54,7 +54,7 @@ namespace mana_XUnit
         {
             var sut = new SetUpProject();
             var res = await sut.SendRequestKYCBasic();
-            res.Should().Be("Success");
+            res.Should().Be(true);
         }
       
 
